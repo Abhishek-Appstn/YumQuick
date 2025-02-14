@@ -77,7 +77,7 @@ const Home = () => {
           style={{
             borderBottomWidth: Active == null ? StyleSheet.hairlineWidth : 0,
             borderColor: colors.orange_Base,
-            height: height * 0.15,
+            height: width * 0.3,
             alignItems: 'center',
             justifyContent:'space-between',
             paddingBottom: Active == null ? 10 : 0,
@@ -98,6 +98,11 @@ const Home = () => {
                 onPress={() => {
                   Active == index ? setActive(null) : setActive(index);
                 }}>
+                {/* {Active === index ?  <View style={{position:'absolute', width: 20,bottom:-20,left:-10,
+    height: 60,
+    borderTopRightRadius: 290,
+    borderBottomRightRadius: 200, transform:[{rotateX:'50deg'}],
+    backgroundColor: colors.White_1}}/>:null} */}
                 {/* <View
                   style={{
                     backgroundColor: 'red',
@@ -294,7 +299,9 @@ const createStyle = ({height, width, Active}) =>
     },
     flatlistContainer: {
       alignItems: 'center',
-      borderRadius: 23,
+      borderTopLeftRadius: 23,
+      borderTopRightRadius: 23,
+
     },
     flatlistInnerContainer: {
       alignItems: 'center',
@@ -305,6 +312,7 @@ const createStyle = ({height, width, Active}) =>
       borderRadius: (width * 0.16) / 2,
       marginVertical: 5,
       marginTop: 10,
+      paddingHorizontal:30
     },
     flatlistImage: {
       width: width * 0.09,
