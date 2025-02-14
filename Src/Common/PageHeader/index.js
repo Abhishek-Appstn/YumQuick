@@ -14,13 +14,17 @@ import Colors from '../../Global/Colors';
 import {
   Back,
   Heart_filled_white,
+  Shopping_Cart,
   Star_Yellow_Filled,
+  User,
 } from '../../assets/Images';
+import SignupIcons from '../Signup Icons';
 
 const PageHeader = props => {
   const {height, width} = Dimensions;
   const styles = createStyles({height, width});
   const navigation = useNavigation();
+  const IconArray=[Shopping_Cart,User]
   return (
     <SafeAreaView style={[styles.container, {justifyContent: 'flex-start'}]}>
       {props.Type !== 'ProductPage' ? (
@@ -44,7 +48,24 @@ const PageHeader = props => {
               />
             </Pressable>
             <Text style={styles.text}>{props.Title}</Text>
-            <View></View>
+            <View style={{flexDirection:'row'}}> {props.Title=='Filter'?
+            IconArray.map((item)=>(
+              <Pressable
+                        style={{
+                          width: width * 0.07,
+                          height: width * 0.07,
+                          borderRadius: width*.03,
+                          backgroundColor: colors.White_1,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          marginHorizontal:width*.009
+                        }}
+                        onPress={() => {handleNavigation()}}>
+                        <Image
+                          source={item}
+                          style={{height: width * 0.045, width: width * 0.045, resizeMode: 'contain'}}
+                        />
+                      </Pressable>)):null}</View>
           </View>
           </View>
           <Text style={styles.Subtext}>{props.subTitle}</Text>
@@ -56,7 +77,7 @@ const PageHeader = props => {
             flexDirection: 'row',
             width: width * 0.94,
             justifyContent: 'space-between',
-            paddingVertical: 50,
+            paddingVertical: width*.07,
           }}>
           <View style={{}}>
             <View
@@ -75,7 +96,7 @@ const PageHeader = props => {
                   }}
                 />
               </Pressable>
-              <View style={{marginLeft: 20}}>
+              <View style={{marginLeft: 10,alignItems:'center',justifyContent:'center'}}>
                 <Text
                   style={[
                     styles.text,
@@ -97,13 +118,12 @@ const PageHeader = props => {
             <View
               style={{
                 backgroundColor: Colors.orange_Base,
-                height: height * 0.025,
-                width: height * 0.06,
+                height: width * 0.07,
+                width: width * 0.14,
                 borderRadius: (height * 0.2) / 2,
                 alignItems: 'center',
                 justifyContent: 'space-evenly',
                 flexDirection: 'row',
-                padding: 2,
                 alignSelf: 'center',
                 marginVertical: 4,
               }}>

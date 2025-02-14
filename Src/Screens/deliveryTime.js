@@ -9,7 +9,7 @@ import Colors from '../Global/Colors'
 import Dimensions from '../Global/Dimensions'
 import CustomButton from '../Common/customButton'
 
-const deliveryTime = () => {
+const DeliveryTime = () => {
     const route=useRoute()
     const navigation=useNavigation()
     const{height,width}=Dimensions
@@ -21,7 +21,7 @@ const deliveryTime = () => {
 
         
     ]
-      const DeliveryTime = props => {
+      const EstTime = props => {
         return (
           <View
             style={{
@@ -65,7 +65,7 @@ const deliveryTime = () => {
       <ScrollView contentContainerStyle={{paddingBottom:200}}>
    <AddressLabel/>
    <Image source={Maps} resizeMode="cover" style={{borderRadius:width*.1/2}}/>
-   <DeliveryTime/>
+   <EstTime/>
    <FlatList data={Data} renderItem={({item,index})=>{
     return(
 <View >
@@ -77,7 +77,7 @@ const deliveryTime = () => {
     )
    }}/>
    <View style={{flexDirection:'row',justifyContent:'space-between',marginVertical:height*.016}}>
-    <CustomButton type="medium-Xsmall" buttonColor={Colors.Orange_3} title="Return Home" textColor={Colors.orange_Base}/>
+    <CustomButton type="medium-Xsmall" buttonColor={Colors.Orange_3} title="Return Home" textColor={Colors.orange_Base}onPress={()=>{navigation.navigate('Filter')}}/>
     <CustomButton type="medium-Xsmall" title="Track Order" onPress={()=>{navigation.navigate('Best Seller')}}/>
    </View>
 
@@ -87,4 +87,4 @@ const deliveryTime = () => {
   )
 }
 
-export default deliveryTime
+export default DeliveryTime

@@ -117,17 +117,16 @@ const Home = () => {
         </View>
         {Active == null ? (
           <ScrollView
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator={false} style={{paddingHorizontal:20}}
             >
             <DisplayCard title="Best Seller" more />
             <Carousal />
             <DisplayCard title="Recomended" type="large" />
           </ScrollView>
         ) : (
-          <View >
+          <View style={{backgroundColor:colors.White_Bg}}>
             <View
               style={{
-        
                 height: height * 0.56,
                 width: width * 0.85,
                 alignSelf: 'center',
@@ -273,8 +272,7 @@ const Home = () => {
         )}
       
       </View>
-        {/* </Layout> */}
-      {/* </View> */}
+
     </SafeAreaView>
   );
 };
@@ -292,7 +290,7 @@ const createStyle = ({height, width, Active}) =>
       height: width * 1.65,
       borderRadius: 27,
       paddingTop: 7,
-      paddingHorizontal:20
+      // paddingHorizontal:20
     },
     flatlistContainer: {
       alignItems: 'center',

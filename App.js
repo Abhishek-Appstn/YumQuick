@@ -30,8 +30,9 @@ import CustomBottomTab from './Src/Common/CustomBottomTab';
 import ProductPage from './Src/Screens/ProductPage';
 import ConfirmOrder from './Src/Screens/ConfirmOrder';
 import Payment from './Src/Screens/Payment';
-import deliveryTime from './Src/Screens/deliveryTime';
 import BestSeller from './Src/Common/BestSeller';
+import DeliveryTime from './Src/Screens/deliveryTime';
+import ItemFilter from './Src/Screens/ItemFilter';
 const {height,width}=Dimensions
 const App = () => {
   const stack = createStackNavigator();
@@ -84,8 +85,10 @@ const FooterNavigator=()=>{
       <Footer.Screen name='ProductPage' component={ProductPage}/>
       <Footer.Screen name='ConfirmOrder' component={ConfirmOrder}/>
       <Footer.Screen name='Payment' component={Payment}/>
-      <Footer.Screen name='Delivery Time' component={deliveryTime}/>
+      <Footer.Screen name='Delivery Time' component={DeliveryTime}/>
       <Footer.Screen name='Best Seller' component={BestSeller}/>
+      <Footer.Screen name='Filter' component={ItemFilter}/>
+
 
 
       
