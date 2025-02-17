@@ -14,11 +14,11 @@ import Colors from '../Global/Colors';
 import Dimensions from '../Global/Dimensions';
 import CustomButton from '../Common/customButton';
 import {Checkmark, Checkmark_filled, Home_Icon} from '../assets/Images';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const AddressSelection = () => {
   const {height, width} = Dimensions;
-  const navigation=useNavigation()
+  const navigation = useNavigation();
   const styles = createStyles({height, width});
   const Data = [
     {nickName: 'My Office', Address: '778 Locust View Drive Oakland, CA'},
@@ -26,16 +26,16 @@ const AddressSelection = () => {
     {nickName: "Parent's House", Address: '778 Locust View Drive Oakland, CA'},
   ];
   const [Active, setActive] = useState(0);
-  const HandlePress=(index)=>{
-    setActive(index)
-  }
-  const handleNavigation=(path)=>{
-    navigation.navigate(path)
-  }
+  const HandlePress = index => {
+    setActive(index);
+  };
+  const handleNavigation = path => {
+    navigation.navigate(path);
+  };
   return (
     <View>
       <PageHeader Title="Delivery Address" />
-    <View style={styles.container}>
+      <View style={styles.container}>
         <View>
           <FlatList
             data={Data}
@@ -50,7 +50,10 @@ const AddressSelection = () => {
                     width: width * 0.83,
                     paddingVertical: 20,
                     alignItems: 'center',
-                  }} onPress={()=>{HandlePress(index)}}>
+                  }}
+                  onPress={() => {
+                    HandlePress(index);
+                  }}>
                   <Image source={Home_Icon} />
                   <View style={{marginHorizontal: width * 0.089}}>
                     <Text
@@ -65,18 +68,27 @@ const AddressSelection = () => {
                       {item.Address}
                     </Text>
                   </View>
-                  
-                    <Image
-                      source={Active === index ? Checkmark_filled : Checkmark}
-                    />
-                  </Pressable>
+
+                  <Image
+                    source={Active === index ? Checkmark_filled : Checkmark}
+                  />
+                </Pressable>
               );
             }}
           />
           <View></View>
         </View>
-        <View style={{marginVertical:height*.18}}>
-        <CustomButton  StyleText={{fontSize:16.5}} title="Add New Address" type="small-long" buttonColor={Colors.Orange_3} textColor={Colors.orange_Base} onPress={()=>{handleNavigation('AddAddress')}}/>
+        <View style={{marginVertical: height * 0.1, alignItems: 'center'}}>
+          <CustomButton
+            StyleText={{fontSize: 16.5}}
+            title="Add New Address"
+            type="small-long"
+            buttonColor={Colors.Orange_3}
+            textColor={Colors.orange_Base}
+            onPress={() => {
+              handleNavigation('AddAddress');
+            }}
+          />
         </View>
       </View>
     </View>

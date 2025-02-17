@@ -9,8 +9,9 @@ import {
   Pressable,
   Alert,
   ScrollView,
+  Animated,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import colors from '../../Global/Colors';
 import SearchBar from '../../Common/SearchBar';
 import Dimensions from '../../Global/Dimensions';
@@ -28,7 +29,7 @@ import Layout from '../Layout';
 const Home = () => {
   const {height, width} = Dimensions;
   const [Active, setActive] = useState(null);
-
+const RippleBG=useRef(new Animated.Value(0)).current
   const styles = createStyle({height, width, Active});
   const data = [
     {id: '1', name: 'Snacks', image: require('../../assets/Images/Snacks.png')},
@@ -58,10 +59,20 @@ const Home = () => {
     },
   ];
   const navigation = useNavigation();
+  const StartRipple=()=>{
+    RippleBG.setValue(0)
+    Animated.timing(RippleBG,{
+      toValue:1,
+      duration:5000,
+      useNativeDriver:true
+    })
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={{justifyContent: 'center'}}>
-        <SearchBar />
+        <View style={{paddingTop: height * 0.02}}>
+          <SearchBar />
+        </View>
         <View style={{padding: 20}}>
           <Text style={styles.headerText}>Good Morning</Text>
           <Text style={styles.subText}>
@@ -71,23 +82,24 @@ const Home = () => {
       </View>
 
       <View style={styles.innerContainer}>
-       
-          {/* <View style={{backgroundColor:colors.orange_Base}}> */}
+        {/* <View style={{backgroundColor:colors.orange_Base}}> */}
         <View
           style={{
             borderBottomWidth: Active == null ? StyleSheet.hairlineWidth : 0,
             borderColor: colors.orange_Base,
             height: width * 0.3,
             alignItems: 'center',
-            justifyContent:'space-between',
+            justifyContent: 'space-between',
             paddingBottom: Active == null ? 10 : 0,
             alignSelf: 'center',
-
           }}>
           <FlatList
             data={data}
             horizontal={true}
-            contentContainerStyle={{width:width*.9,justifyContent:'space-evenly'}}
+            contentContainerStyle={{
+              width: width * 0.9,
+              justifyContent: 'space-between',
+            }}
             scrollEnabled={false}
             renderItem={({item, index}) => (
               <Pressable
@@ -115,21 +127,28 @@ const Home = () => {
                 <View style={styles.flatlistInnerContainer}>
                   <Image source={item.image} style={styles.flatlistImage} />
                 </View>
-                <Text style={{fontSize:12,fontFamily:'LeagueSpartan-Regular',color:colors.Font}}>{item.name}</Text>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontFamily: 'LeagueSpartan-Regular',
+                    color: colors.Font,
+                  }}>
+                  {item.name}
+                </Text>
               </Pressable>
             )}
           />
         </View>
         {Active == null ? (
           <ScrollView
-            showsVerticalScrollIndicator={false} style={{paddingHorizontal:20}}
-            >
+            showsVerticalScrollIndicator={false}
+            style={{paddingHorizontal: 20}}>
             <DisplayCard title="Best Seller" more />
             <Carousal />
             <DisplayCard title="Recomended" type="large" />
           </ScrollView>
         ) : (
-          <View style={{backgroundColor:colors.White_Bg}}>
+          <View style={{backgroundColor: colors.White_Bg}}>
             <View
               style={{
                 height: height * 0.56,
@@ -222,9 +241,8 @@ const Home = () => {
                             <View
                               style={{
                                 backgroundColor: colors.orange_Base,
-
-                                height: height * 0.025,
-                                width: height * 0.06,
+                                height: width * 0.06,
+                                width: width * 0.12,
                                 borderRadius: (height * 0.2) / 2,
                                 alignItems: 'center',
                                 justifyContent: 'space-evenly',
@@ -275,9 +293,7 @@ const Home = () => {
             </View>
           </View>
         )}
-      
       </View>
-
     </SafeAreaView>
   );
 };
@@ -301,7 +317,6 @@ const createStyle = ({height, width, Active}) =>
       alignItems: 'center',
       borderTopLeftRadius: 23,
       borderTopRightRadius: 23,
-
     },
     flatlistInnerContainer: {
       alignItems: 'center',
@@ -312,7 +327,7 @@ const createStyle = ({height, width, Active}) =>
       borderRadius: (width * 0.16) / 2,
       marginVertical: 5,
       marginTop: 10,
-      paddingHorizontal:30
+      paddingHorizontal: 30,
     },
     flatlistImage: {
       width: width * 0.09,
@@ -322,12 +337,12 @@ const createStyle = ({height, width, Active}) =>
     headerText: {
       fontSize: 30,
       color: colors.White_1,
-      fontFamily:'LeagueSpartan-Bold',
+      fontFamily: 'LeagueSpartan-Bold',
     },
     subText: {
       fontSize: 13,
       color: colors.orange_Base,
-fontFamily:'LeagueSpartan-Medium'
+      fontFamily: 'LeagueSpartan-Medium',
     },
   });
 

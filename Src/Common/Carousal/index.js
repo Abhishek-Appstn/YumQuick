@@ -53,6 +53,8 @@ const Carousal = props => {
               style={{
                 flex: 4,
                 padding: 5,
+                paddingTop:0,
+                marginTop:width*.04,
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
@@ -153,10 +155,9 @@ const createStyles = ({height, width}) =>
   StyleSheet.create({
     container: {
       height: width * 0.3,
-      width: width * 0.84,
       borderRadius: width * 0.05,
       backgroundColor: 'red',
-      marginHorizontal: 10,
+      marginHorizontal: 5,
       alignSelf: 'center',
       overflow: 'hidden',
     },

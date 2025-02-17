@@ -1,8 +1,9 @@
-import { View, Text, FlatList, ImageBackground, StyleSheet, Pressable } from 'react-native'
+import { View, Text, FlatList, ImageBackground, StyleSheet, Pressable, Image } from 'react-native'
 import React from 'react'
 import Dimensions from '../../Global/Dimensions'
 import Colors from '../../Global/Colors'
 import { useNavigation } from '@react-navigation/native'
+import { Heart, HeartFilled_orange, HeartOutline_orange, Snacks } from '../../assets/Images'
 const {height,width}=Dimensions
 const ImageView = (props) => {
     const styles=createStyles({height,width,props})
@@ -20,7 +21,21 @@ const ImageView = (props) => {
             return (
                 <Pressable style={styles.imageWrapper} onPress={()=>{navigation.navigate('ProductPage',{item})}}>
             <ImageBackground source={item.image} style={styles.image}>
-              
+             
+            {props.BestSeller? <View style={{flexDirection:'row',justifyContent:'space-between',marginHorizontal:5,marginTop:5,}}>
+            <View style={{padding:5,backgroundColor:Colors.White_1,borderRadius:40,}}>
+               
+               <Image source={Snacks}/>
+    
+                </View>
+                <View style={{height:width*.06,width:width*.06, backgroundColor:Colors.White_1,borderRadius:50,alignItems:'center',justifyContent:'center',marginRight:5}}>
+          
+               <Image source={HeartFilled_orange}/>
+    
+                </View>
+
+              </View>
+                    :null}
               <View style={styles.priceContainer}>
               <Text style={styles.priceText}> ${item.price}</Text>
                   </View>
@@ -43,10 +58,10 @@ const createStyles=({height,width,props})=>StyleSheet.create({
         },
         priceContainer:{
             backgroundColor:Colors.orange_Base,
-            width:width*.12,
+            width:width*.16,
             height:width*.055,
             position:'absolute',
-            bottom:10,right:0,borderTopLeftRadius:20,borderBottomLeftRadius:20,
+            bottom:14,right:0,borderTopLeftRadius:20,borderBottomLeftRadius:20,
            justifyContent:'center',alignItems:'center'
         },
         priceText:{

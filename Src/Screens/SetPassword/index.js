@@ -34,7 +34,7 @@ const SetPassword = () => {
     <>
       <PageHeader Title={'Set Password'} />
      <Layout>
-      <View style={{}}>
+      <View style={{marginTop:height*.04}}>
 
         <Text style={styles.subText}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

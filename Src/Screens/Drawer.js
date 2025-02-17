@@ -33,7 +33,7 @@ const createStyles = ({height, width}) =>
     container: {
       height: height,
       backgroundColor: Colors.orange_Base,
-      paddingTop: width * 0.17,
+      paddingTop: height * 0.06,
     },
     profileView: {
       height: height * 0.1,
@@ -54,7 +54,7 @@ const createStyles = ({height, width}) =>
     },
     name: {
       fontSize: 33,
-      fontWeight: 'bold',
+      fontFamily:'LeagueSpartan-Medium',
       color: Colors.White_1,
     },
     email: {
@@ -106,7 +106,7 @@ const handlePress=(path)=>{
           marginVertical: 5,
           width: width * 0.63,
           alignSelf: 'center',
-          paddingVertical: 26,
+          paddingVertical: height*.03,
         }}
         onPress={() => {
           ActionsheetRef.current.show();
@@ -166,8 +166,9 @@ const handlePress=(path)=>{
 };
 const ItemView = props => {
   return (
-    <View style={{paddingTop: 15}}>
+    <View style={{}}>
       <FlatList
+      contentContainerStyle={{marginTop:height*.015}}
         data={Data}
         renderItem={({item, index}) => {
           return (
@@ -175,7 +176,7 @@ const ItemView = props => {
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                marginVertical: 5,
+                marginVertical: height*.003,
                 borderBottomColor: Colors.Orange_3,
                 borderBottomWidth: 0.8,
                 width: width * 0.7,
@@ -186,8 +187,8 @@ const ItemView = props => {
                 style={{
                   backgroundColor: Colors.White_1,
                   padding: 10,
-                  height: width * 0.12,
-                  width: width * 0.12,
+                  height: width * 0.11,
+                  width: width * 0.11,
                   borderRadius: width * 0.047,
                   overflow: 'hidden',
                   alignItems: 'center',
@@ -200,7 +201,7 @@ const ItemView = props => {
                   marginHorizontal: width * 0.088,
                   color: Colors.yellow,
                   fontSize: 20,
-                  fontWeight: '600',
+                 fontFamily:'LeagueSpartan-Medium'
                 }}>
                 {item.name}
               </Text>

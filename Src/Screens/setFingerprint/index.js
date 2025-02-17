@@ -27,7 +27,7 @@ const SetFingerprint = () => {
     <>
       <PageHeader Title={'Set Your Fingerprint'} />
       <Layout>
-      <View >
+      <View style={{marginTop:height*.05}} >
         <Text style={styles.subText}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.{' '}

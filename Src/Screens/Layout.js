@@ -21,7 +21,7 @@ const Layout = ({children, name}) => {
          
       
         }}>
-          <View style={{width:width*.85,paddingTop:height*.04}}>
+          <View style={{width:width*.85}}>
           {children}
 
           </View>

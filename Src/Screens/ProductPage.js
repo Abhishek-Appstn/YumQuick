@@ -22,6 +22,7 @@ import {
   Pork_Skewer,
 } from '../assets/Images';
 import CustomButton from '../Common/customButton';
+import Svg, { Circle, Polygon } from 'react-native-svg';
 
 const ProductPage = () => {
   const route = useRoute();
@@ -49,6 +50,7 @@ const ProductPage = () => {
       />
      
       <ScrollView
+      showsVerticalScrollIndicator={false}
         style={{
           top: -width * 0.06,
           width: width,
@@ -169,6 +171,7 @@ const ProductPage = () => {
                     justifyContent: 'space-between',
                   }}>
                   <Text>{item.name}</Text>
+                  
                   <View
                     style={{
                       flexDirection: 'row',

@@ -59,10 +59,8 @@ const Profile = () => {
           renderItem={({item, index}) => {
             return (
               <View>
-                <Text style={{marginTop: 13, marginBottom: 6}}>
-                  {item.name}
-                </Text>
                 <CustomTextInput
+                name={item.name}
                   backgroundColor={Colors.yellow}
                   width={width}
                   placeholder={item.name}

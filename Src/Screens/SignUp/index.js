@@ -61,7 +61,7 @@ const Signup = () => {
       <PageHeader Title="New Account" />
         <Layout>
           <SafeAreaView>
-      <ScrollView showsVerticalScrollIndicator={false}style={{height:height*.8}}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{marginTop:height*.04}}>
 
         {Fields.map(item => (
           <View key={item.Id} style={styles.subContainer}>

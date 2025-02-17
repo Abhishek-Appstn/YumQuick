@@ -18,7 +18,6 @@ import {
   Star_Yellow_Filled,
   User,
 } from '../../assets/Images';
-import SignupIcons from '../Signup Icons';
 
 const PageHeader = props => {
   const {height, width} = Dimensions;
@@ -150,11 +149,9 @@ const PageHeader = props => {
               width: height * 0.04,
               borderRadius: (height * 0.2) / 2,
               alignItems: 'center',
-              justifyContent: 'space-evenly',
-              flexDirection: 'row',
+              justifyContent: 'center',
               padding: 2,
               alignSelf: 'center',
-              marginVertical: 4,
             }}>
             <Image
               source={Heart_filled_white}

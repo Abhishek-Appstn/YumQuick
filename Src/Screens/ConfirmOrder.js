@@ -7,6 +7,7 @@ import Dimensions from '../Global/Dimensions'
 import AddressLabel from '../Common/AddressLabel'
 import OrderSummary from '../Common/OrderSummary'
 import CustomButton from '../Common/customButton'
+import Layout from './Layout'
 
 const ConfirmOrder = () => {
     const route=useRoute()
@@ -16,21 +17,10 @@ const ConfirmOrder = () => {
   return (
     <>
     <PageHeader Title='Confirm Order'/>
-        <View  style={{
-                  top: -width * 0.06,
-                  width: width,
-                  height:height*.74,
-                  borderTopLeftRadius: width * 0.088,
-                  borderTopRightRadius: width * 0.088,
-                  backgroundColor:Colors.White_1,
-                
-                
-                  paddingBottom: 0,       
+      <Layout>
+                    <ScrollView contentContainerStyle={{marginTop:height*.024}}>
 
-                }}>
-                    <ScrollView>
-
-                    <View style={{marginHorizontal:width*.07}}>
+                    <View >
     <AddressLabel/>
     <OrderSummary/>
     <View style={{alignItems:'center'}}>
@@ -40,7 +30,8 @@ const ConfirmOrder = () => {
     </View>
     </ScrollView>
 
-    </View>
+    </Layout>
+    
     </>
 
   )

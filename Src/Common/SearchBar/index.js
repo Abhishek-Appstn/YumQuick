@@ -23,7 +23,7 @@ const SearchBar = (props) => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width:width,
+        marginHorizontal:width*.05
       }}>
       <View
         style={[{
@@ -59,7 +59,7 @@ const SearchBar = (props) => {
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
-          width:width*.2
+          // width:width*.2
         }}>
           
         {!props.Icon? Data.map(item => (

@@ -8,6 +8,7 @@ import AddressLabel from '../Common/AddressLabel';
 import OrderSummary from '../Common/OrderSummary';
 import {Card} from '../assets/Images';
 import CustomButton from '../Common/customButton';
+import Layout from './Layout';
 
 const Payment = () => {
   const route = useRoute();
@@ -120,18 +121,9 @@ const Payment = () => {
   return (
     <>
       <PageHeader Title="Payment" />
-      <View
-        style={{
-          top: -width * 0.06,
-          height: height * 0.74,
-          borderTopLeftRadius: width * 0.088,
-          borderTopRightRadius: width * 0.088,
-          backgroundColor: Colors.White_1,
-          alignItems: 'center',
-          paddingTop: 10,
-          paddingBottom: 0,
-        }}>
-        <View style={{width: width * 0.88}}>
+      <Layout>
+
+        <View style={{marginTop:height*.04}}>
           <AddressLabel />
           <OrderSummary type="payment" />
           <PaymentMethods />
@@ -145,7 +137,8 @@ const Payment = () => {
             />
           </View>
         </View>
-      </View>
+        </Layout>
+
     </>
   );
 };

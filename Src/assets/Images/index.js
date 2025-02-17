@@ -50,11 +50,15 @@ import YumQuick_Logo from './YumQuick_Logo/YumQuick_Logo.png';
 import Delete from './Delete/Delete.png';
 import Maps from './Maps/Maps.png';
 import YumSplash from './YumSplash/YumSplash.png';
-import FingerPrint from './FingerPrint/FingerPrint.png'
-import Gmail from './Gmail/Gmail.png'
-import FingerPrint_outline from './FingerPrint_outline/FingerPrint_outline.png'
-import FingerPrint_Filled_big from './FingerPrint_Filled_big/FingerPrint_Filled_big.png'
-import Shopping_Cart from './Shopping_Cart/Shopping_Cart.png'
+import FingerPrint from './FingerPrint/FingerPrint.png';
+import Gmail from './Gmail/Gmail.png';
+import FingerPrint_outline from './FingerPrint_outline/FingerPrint_outline.png';
+import FingerPrint_Filled_big from './FingerPrint_Filled_big/FingerPrint_Filled_big.png';
+import Shopping_Cart from './Shopping_Cart/Shopping_Cart.png';
+import HeartOutline_orange from './HeartOutline_orange/HeartOutline_orange.png';
+import HeartFilled_orange from './HeartFilled_orange/HeartFilled_orange.png';
+import Snacks from './Snacks/Snacks.png'
+import Shopping_Cart_White from'./Shopping_Cart_White/Shopping_Cart_White.png'
 export {
   YumQuick_Logo,
   Logout,
@@ -108,5 +112,13 @@ export {
   Delete,
   Maps,
   YumSplash,
-  FingerPrint,Gmail,FingerPrint_outline,FingerPrint_Filled_big,Shopping_Cart
+  FingerPrint,
+  Gmail,
+  FingerPrint_outline,
+  FingerPrint_Filled_big,
+  Shopping_Cart,
+  HeartFilled_orange,
+  HeartOutline_orange,
+  Snacks,
+  Shopping_Cart_White
 };
