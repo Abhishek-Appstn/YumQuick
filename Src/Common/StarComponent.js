@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Star, Star_Filled } from '../assets/Images'
 
 const StarComponent = ({maxStars}) => {
-    const [Rating, setRating] = useState(4)
+    const [Rating, setRating] = useState(0)
     const handlePress=(index)=>{
         index===Rating?
         setRating(0):

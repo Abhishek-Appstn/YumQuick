@@ -33,6 +33,12 @@ import Payment from './Src/Screens/Payment';
 import BestSeller from './Src/Common/BestSeller';
 import DeliveryTime from './Src/Screens/deliveryTime';
 import ItemFilter from './Src/Screens/ItemFilter';
+import Recomendations from './Src/Screens/Recomendations';
+import Help from './Src/Screens/Help';
+import OrderDetails from './Src/Screens/OrderDetails';
+import LiveTracking from './Src/Screens/LiveTracking';
+import History from './Src/Screens/History';
+import Favourites from './Src/Screens/Favourites';
 const {height,width}=Dimensions
 const App = () => {
   const stack = createStackNavigator();
@@ -73,6 +79,8 @@ const DrawerNavigator=()=>{
     <Drawer.Screen name='Orders' component={Orders}/>
     <Drawer.Screen name='CancelOrder' component={CancelOrders}/>
     <Drawer.Screen name='Confirmation' component={Confirmation}/>
+    <Drawer.Screen name='HelpPage' component={Help}/>
+
     </Drawer.Navigator>
   )
 }
@@ -88,6 +96,18 @@ const FooterNavigator=()=>{
       <Footer.Screen name='Delivery Time' component={DeliveryTime}/>
       <Footer.Screen name='Best Seller' component={BestSeller}/>
       <Footer.Screen name='Filter' component={ItemFilter}/>
+      <Footer.Screen name='Recomendations' component={Recomendations}/>
+      <Footer.Screen name='OrderDetails' component={OrderDetails}/>
+      <Footer.Screen name='LiveTracking' component={LiveTracking}/>
+      <Footer.Screen name='History' component={History}/>
+      <Footer.Screen name='Favorites' component={Favourites}/>
+
+      
+      
+
+      
+
+
 
 
 

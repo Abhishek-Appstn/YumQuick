@@ -13,8 +13,9 @@ const SearchBar = (props) => {
     {image: User, Id: 3},
   ];
   const handleNavigation=(path)=>{
-    navigation.navigate('Cdrawer',{Data:'Hello'})
-   navigation.dispatch(DrawerActions.openDrawer())
+    // navigation.navigate('Cdrawer',{Data:'Hello'})
+    navigation.navigate('Favorites')
+  //  navigation.dispatch(DrawerActions.openDrawer())
   }
   const {height,width}=Dimensions
   return (

@@ -1,14 +1,16 @@
-import {View, Text, FlatList, Image, SafeAreaView} from 'react-native';
+import {View, Text, FlatList, Image, SafeAreaView, Pressable} from 'react-native';
 import React from 'react';
 import Colors from '../Global/Colors';
 import Dimensions from '../Global/Dimensions';
 import {Clipboard, Dine, Heart, Home_White, Support} from '../assets/Images';
 import {Home_Icon} from '../assets/Images';
+import { useNavigation } from '@react-navigation/native';
 
 const CustomBottomTab = () => {
   const {height, width} = Dimensions;
+  const navigation=useNavigation()
   const Data = [
-    {Name: 'Home', Icon: Home_White},
+    {Name: 'Home', Icon: Home_White, navigate:'HelpPage'},
     {Name: 'Dine', Icon: Dine},
     {Name: 'Favourite', Icon: Heart},
     {Name: 'Orders', Icon: Clipboard},
@@ -38,11 +40,15 @@ const CustomBottomTab = () => {
         }}
         renderItem={({item, index}) => {
           return (
+            <Pressable onPress={()=>{navigation.navigate(item.navigate)}}>
+
             <Image
               source={item.Icon}
               style={{height: height * 0.033, width: height * 0.033}}
               resizeMode="contain"
             />
+            </Pressable>
+
           );
         }}
       />

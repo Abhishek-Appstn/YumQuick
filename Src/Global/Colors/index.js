@@ -11,5 +11,12 @@ export default{
     Orange_Logo:'#FF642F',
     Orange_2:'#FFDECF',
     Orange_3:"#FFD8C7",
-    Font:'#391713'
+    Font:'#391713',
+    Grey:'#B8B8B8',
+    Gradient_Red:'#FE0000',
+    Gradient_Orange:'#FA9C10',
+    Gradient_Green_Fluro:'#DDFF0B',
+    Gradient_Green_Light:'#29DD31',
+    Gradient_Green:'#21DA29',
+
 }

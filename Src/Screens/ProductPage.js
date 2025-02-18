@@ -23,8 +23,9 @@ import {
 } from '../assets/Images';
 import CustomButton from '../Common/customButton';
 import Svg, { Circle, Polygon } from 'react-native-svg';
+import StarHex from '../Common/StarHex';
 
-const ProductPage = () => {
+const ProductPage = (props) => {
   const route = useRoute();
   const data = route.params;
   const navigation=useNavigation()
@@ -52,6 +53,7 @@ const ProductPage = () => {
       <ScrollView
       showsVerticalScrollIndicator={false}
         style={{
+          
           top: -width * 0.06,
           width: width,
           borderTopLeftRadius: width * 0.088,
@@ -62,6 +64,8 @@ const ProductPage = () => {
           alignSelf: 'center',
         }}>
         <View style={{alignItems: 'center'}}>
+          {!props.OfferPercentage?
+        <StarHex height={height*.05}style={{position:'absolute',zIndex:3,right:16,top:-8}}/>:null}
           <Image
             source={Pork_Skewer}
             style={{
@@ -87,14 +91,31 @@ const ProductPage = () => {
                 width: width * 0.82,
                 alignItems: 'center',
               }}>
+                <View style={{flexDirection:'row',alignItems:'center'}}>
+
               <Text
                 style={{
-                  fontWeight: '800',
+                  fontFamily:'LeagueSpartan-Bold',
+
                   color: Colors.orange_Base,
-                  fontSize: 25,
+                  fontSize: 24,
                 }}>
                 $50.00
               </Text>
+              {props.OfferPercentage?
+              <Text
+                style={{
+        fontFamily:'LeagueSpartan-Bold',
+                  color: Colors.yellow_Base,
+                  fontSize: 15,
+                  marginLeft:width*.02,
+                  textDecorationLine:'line-through',
+                  textDecorationColor:Colors.orange_Base,
+                }}>
+                $50.00
+              </Text>:null}
+              </View>
+
               <View
                 style={{
                   flexDirection: 'row',
@@ -196,6 +217,7 @@ const ProductPage = () => {
             icon={Cart_White}
             title="Add to Cart"
             StyleText={{fontWeight: '500'}}
+            onPress={()=>{navigation.navigate("Recomendations")}}
           />
         </View>
 

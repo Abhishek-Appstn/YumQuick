@@ -106,7 +106,7 @@ const OrderSummary = props => {
           paddingBottom: height * 0.016,
           paddingTop: height * 0.01,
         }}>
-        <Text style={{fontSize: 17, fontWeight: '500'}}>Order Summary</Text>
+      {props.HeaderHide? null:<> <Text style={{fontSize: 17, fontWeight: '500'}}>Order Summary</Text>
         <Pressable
           style={{
             width: width * 0.13,
@@ -126,6 +126,8 @@ const OrderSummary = props => {
             Edit
           </Text>
         </Pressable>
+        </>
+}
       </View>
       {props.type !== 'payment' ? (
         <View style={{height: height * 0.5}}>

@@ -37,10 +37,10 @@ const ExpandingList = (props) => {
         data={Data}
         renderItem={({item, index}) => {
           return (
-            <View style={{alignItems:'center'}} >
+            <View style={{}} >
               <Pressable
                 style={{
-                  width: width * 0.88,
+                  // width: width * 0.88,
                   alignItems: 'center',
                   flexDirection: 'row',
                   justifyContent: 'space-between',
@@ -72,8 +72,8 @@ const ExpandingList = (props) => {
                   <Text
                     style={[{
                       marginHorizontal: 10,
-                      fontSize: 18,
-                      fontWeight: '600',
+                      fontSize: 20,
+        fontFamily:'LeagueSpartan-Medium',
                       color:props.Type!=='iconList'?ActiveIndex!==index?Colors.orange_Base :Colors.Font:null,
                     },props.HeaderTextStyle]}>
                     {item.Name}
@@ -94,7 +94,7 @@ const ExpandingList = (props) => {
               </Pressable>
               {Expanded ? (
                 index == ActiveIndex ? (
-                  <Text style={{paddingHorizontal:width*.034,marginVertical:5,textAlign:'justify',width:width*.94}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam.</Text>
+                  <Text style={{paddingHorizontal:width*.025,marginVertical:5,textAlign:'justify',fontFamily:'LeagueSpartan-Light',fontSize:14}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam.</Text>
                 ) : null
               ) : null}
             </View>

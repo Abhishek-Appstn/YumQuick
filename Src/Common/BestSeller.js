@@ -6,6 +6,7 @@ import Colors from '../Global/Colors';
 import ImageView from './ImageView';
 import Dimensions from '../Global/Dimensions';
 import {Shopping_Cart, Shopping_Cart_White, Star_Yellow_Filled} from '../assets/Images';
+import StarHex from './StarHex';
 
 const BestSeller = () => {
   const {height, width} = Dimensions;
@@ -38,8 +39,13 @@ const BestSeller = () => {
   return (
     <>
       <PageHeader Title="Best Seller" />
-     <View>
-        <View style={{ marginTop: 10}}>
+     <View style={{
+        top: -width * 0.05,
+                  borderRadius: width * 0.06,
+                  backgroundColor: Colors.White_Bg,
+                  height: height*.88
+     }}>
+        <View style={{ marginTop: 10,marginHorizontal:width*.06}}>
           <Text
             style={{
               color: Colors.orange_Base,
@@ -50,7 +56,6 @@ const BestSeller = () => {
             {' '}
             Discover our most popular dishes!
           </Text>
-
           <FlatList
             numColumns={2}
             showsHorizontalScrollIndicator={false}
@@ -60,34 +65,29 @@ const BestSeller = () => {
             data={bigData}
             renderItem={({item, index}) => {
               return (
-                <View>
+                <View style={{width:width*.45,overflow:'hidden'}}>
                   <ImageView
                     type="large"
                     data={[{...item}]}
                     BestSeller={true}
                   />
-                  <View style={{paddingVertical: 10,flexDirection:'row',width:width*.5}}>
+                  <View style={{paddingVertical: 10,flexDirection:'row'}}>
                     <View>
-
                     <Text style={{fontWeight: '500', fontSize: 16}}>
                       {item.name}
                     </Text>
-                      <Text style={{width: width * 0.4}}>{item.desc}</Text>
+                      <Text style={{width: width * 0.3,fontFamily:'LeagueSpartan-Light',fontSize:12}}>{item.desc}</Text>
                       </View>
-                    <View style={{}}>
+                    <View>
 
                       <View
                         style={{
                           backgroundColor: Colors.orange_Base,
-                          // height: height * 0.04,
-                          // width: height * 0.04,
-                          // borderRadius: (height * 0.03) / 2,
                           justifyContent: 'center',
                           alignItems: 'center',
-                          flexDirection:'row',marginVertical:6
+                          flexDirection:'row',marginVertical:6,borderRadius:100,padding:2
                         }}>
-                          
-                        <Text>5.00</Text>
+                        <Text style={{color:Colors.White_1}}>5.00 </Text>
                         <Image source={Star_Yellow_Filled}/>
                       </View>
                       <View
@@ -97,7 +97,7 @@ const BestSeller = () => {
                           width: height * 0.03,
                           borderRadius: (height * 0.03) / 2,
                           justifyContent: 'center',
-                          alignItems: 'center',
+                          alignItems: 'center',alignSelf:'flex-end'
                         }}>
                         <Image source={Shopping_Cart_White} />
                       </View>

@@ -1,18 +1,22 @@
-import {View, Text, SafeAreaView, Animated} from 'react-native';
+import {View, Text, SafeAreaView, Animated, Pressable} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Dimensions from '../Global/Dimensions';
 import Colors from '../Global/Colors';
 import PageHeader from '../Common/PageHeader';
 import Entypo from 'react-native-vector-icons/FontAwesome6';
+import StarComponent from '../Common/StarComponent';
+import { useNavigation } from '@react-navigation/native';
 
 const Confirmation = props => {
   const {height, width} = Dimensions;
+  const navigation=useNavigation()
   const Info =
-    props.type === 'Cancel' ? 'Order Cancelled!' : 'Order Confirmed!';
+    props.type === 'Cancel' ? 'Order Cancelled!' : props.type === 'Delivered'?"Order Delivered!":'Order Confirmed!';
   const SubData =
     props.type === 'Cancel'
       ? 'Your order has been successfully Cancelled'
-      : 'Your order has been Placed successfully ';
+      : props.type === 'Delivered'?"Your order has been succesfully delivered, enjoy it!":
+      'Your order has been Placed successfully ';
   const [AnimationComplete, setAnimationComplete] = useState(false);
   const View1 = new Animated.Value(0);
   const View2 = new Animated.Value(0);
@@ -64,7 +68,7 @@ const Confirmation = props => {
       <View style={{alignItems: 'center', width: width, height: height * 0.6}}>
         <View
           style={{
-            height: height * 0.18,
+            height: width * 0.4,
             width: width * 0.4,
             borderRadius: (width * 0.4) / 2,
             borderColor: Colors.orange_Base,
@@ -135,6 +139,15 @@ const Confirmation = props => {
           }}>
           {SubData}{' '}
         </Text>
+        {props.type=='Delivered'?<>
+        <Text>Rate your Delivery</Text>
+        <StarComponent maxStars={5}/></>:props.type=='Confirmed'?<>
+        <Text style={{marginVertical:10}}>Delivery by Thu, 29th, 4:00 PM</Text>
+        <Pressable style={{marginVertical:10}} onPress={()=>navigation.navigate('OrderDetails')}>
+        <Text style={{color:Colors.orange_Base,fontFamily:'LeagueSpartan-Medium',fontSize:20}}>Track my order</Text>
+        </Pressable>
+
+        </>:null}
       </View>
       <Text style={{fontSize: 15, textAlign: 'center', width: width * 0.9}}>
         If you have any question reach directly to our customer support{' '}
