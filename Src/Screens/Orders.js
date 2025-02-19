@@ -13,6 +13,7 @@ import Colors from '../Global/Colors';
 import CustomButton from '../Common/customButton';
 import {Milkshake, TransferDocument} from '../assets/Images';
 import { useNavigation } from '@react-navigation/native';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const Orders = () => {
   const {height, width} = Dimensions;
@@ -26,6 +27,22 @@ const Orders = () => {
       timestamp: '29 Nov, 01:20 pm',
       price: '20.00',
       qty: 2,
+    },
+    {
+      title: 'Merry Shake',
+      image: Milkshake,
+      timestamp: '29 Nov, 01:20 pm',
+      price: '20.00',
+      qty: 2,
+      status:'completed'
+    },
+    {
+      title: 'Berry Shake',
+      image: Milkshake,
+      timestamp: '29 Nov, 01:20 pm',
+      price: '20.00',
+      qty: 2,
+      status:'cancelled'
     }
   ];
 
@@ -37,7 +54,7 @@ const Orders = () => {
     return(
     <View style={{height:height*.7,padding:10,justifyContent:'center',alignItems:'center'}}>
     <Image source={TransferDocument}/>
-    <Text style={{color:Colors.orange_Base,fontSize:25,textAlign:'center',width:width*.74,fontWeight:'600',marginVertical:10}}>You don't have any active orders at this time</Text>
+    <Text style={{color:Colors.orange_Base,fontSize:30,textAlign:'center',width:width*.74,fontFamily:'LeagueSpartan-Medium',marginVertical:10}}>You don't have any active orders at this time</Text>
     </View>
     )
   }
@@ -71,7 +88,7 @@ const Orders = () => {
           />
         </View>
         <FlatList
-        //   data={ExtraData} 
+          data={ExtraData} 
           ListEmptyComponent={<EmptyData/>}
           renderItem={({item, index}) => {
             return (
@@ -104,8 +121,9 @@ const Orders = () => {
                   <View
                     style={{
                       flexDirection: 'row',
-                      justifyContent: 'center',
+                      justifyContent: 'space-between',
                       alignItems: 'center',
+                      width:width*.65
                     }}>
                     <View style={{padding: 10}}>
                       <Text
@@ -124,6 +142,9 @@ const Orders = () => {
                         }}>
                         {item.timestamp}
                       </Text>
+                      {item.status=='cancelled'|| item.status=='completed'?
+                      <View style={{flexDirection:'row',alignItems:'flex-start',marginTop:height*.008}}><AntDesign style={{marginRight:width*.02}}name={item.status!=='cancelled'?item.status=="completed"?"checkcircleo":null:'closecircleo'} color={Colors.orange_Base}/>
+                      <Text style={{fontFamily:'LeagueSpartan-Light',fontSize:14,color:Colors.orange_Base}}>{item.status!=='cancelled'?item.status=="completed"?"Order Delivered":null:'Order Cancelled'}</Text></View>:null}
                     </View>
                     <View style={{justifyContent: 'flex-end'}}>
                       <Text
@@ -146,20 +167,21 @@ const Orders = () => {
                     </View>
                   </View>
                   <View></View>
+                  {item.status!=="cancelled"?
                   <View
                     style={{
                       flexDirection: 'row',
                       justifyContent: 'space-between',
                       marginLeft: 10,
                     }}>
-                    <CustomButton type="tiny" title="Cancel Order" onPress={()=>handleNavigation('CancelOrder')} />
+                    <CustomButton type="tiny" title={item.status=='completed'?"Leave a review":"Cancel Order"} onPress={()=>handleNavigation('CancelOrder')} />
                     <CustomButton
                       type="tiny"
                       buttonColor={Colors.Orange_2}
                       textColor={Colors.orange_Base}
-                      title="Track Order"
+                      title={item.status=='completed'?"Order Again":"Track Order"}
                     />
-                  </View>
+                  </View>:null}
                 </View>
               </View>
             );

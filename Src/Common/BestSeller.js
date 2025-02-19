@@ -51,7 +51,7 @@ const BestSeller = () => {
               color: Colors.orange_Base,
               fontSize: 18,
               fontWeight: '600',
-              marginVertical: 10,
+              marginVertical: 10,alignSelf:'center'
             }}>
             {' '}
             Discover our most popular dishes!

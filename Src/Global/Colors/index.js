@@ -18,5 +18,5 @@ export default{
     Gradient_Green_Fluro:'#DDFF0B',
     Gradient_Green_Light:'#29DD31',
     Gradient_Green:'#21DA29',
-
+    White:'#FFFFFF'
 }

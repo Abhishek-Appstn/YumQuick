@@ -39,6 +39,7 @@ import OrderDetails from './Src/Screens/OrderDetails';
 import LiveTracking from './Src/Screens/LiveTracking';
 import History from './Src/Screens/History';
 import Favourites from './Src/Screens/Favourites';
+import OnboardingScreen from './Src/Screens/OnboardingScreen';
 const {height,width}=Dimensions
 const App = () => {
   const stack = createStackNavigator();
@@ -63,6 +64,7 @@ const App = () => {
     <stack.Screen name='Settings' component={Settings}/>
     <stack.Screen name='NotificationSettings' component={NotificationSettings}/>
     <stack.Screen name='ChangePassword' component={ChangePassword}/>
+    <stack.Screen name='OnboardingScreem' component={OnboardingScreen}/>
 
 
     
@@ -101,6 +103,7 @@ const FooterNavigator=()=>{
       <Footer.Screen name='LiveTracking' component={LiveTracking}/>
       <Footer.Screen name='History' component={History}/>
       <Footer.Screen name='Favorites' component={Favourites}/>
+
 
       
       

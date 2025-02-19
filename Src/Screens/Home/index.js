@@ -152,7 +152,7 @@ const RippleBG=useRef(new Animated.Value(0)).current
             <View
               style={{
                 height: height * 0.56,
-                width: width * 0.85,
+                width: width * 0.9,
                 alignSelf: 'center',
                 marginVertical: 20,
                 borderTopRightRadius: 20,
@@ -164,9 +164,9 @@ const RippleBG=useRef(new Animated.Value(0)).current
                   justifyContent: 'space-between',
                   alignItems: 'center',
                 }}>
-                <Text>
+                <Text style={{fontFamily:'LeagueSpartan-Light',fontSize:12}}>
                   Sort By{' '}
-                  <Text style={{color: colors.orange_Base, fontWeight: '800'}}>
+                  <Text style={{color: colors.orange_Base,}}>
                     Popular
                   </Text>
                 </Text>
@@ -192,12 +192,12 @@ const RippleBG=useRef(new Animated.Value(0)).current
                       style={{
                         paddingVertical: 15,
                         borderColor: colors.orange_Base,
-                        borderBottomWidth: 0.4,
+                        borderBottomWidth: 0.4,justifyContent:'center'
                       }}>
                       <Image
                         style={{
-                          height: height * 0.18,
-                          width: width * 0.85,
+                          height: height * 0.25,
+                          width: width * 0.89,
                           borderRadius: (width * 0.2) / 3,
                           alignSelf: 'center',
                           resizeMode: 'cover',
@@ -217,13 +217,13 @@ const RippleBG=useRef(new Animated.Value(0)).current
                               flexDirection: 'row',
                               alignItems: 'center',
                               justifyContent: 'space-between',
-                              width: width * 0.55,
+                              width: width * 0.55,marginTop:10
                             }}>
                             <Text
                               style={{
-                                fontSize: 20,
-                                fontWeight: '600',
-                                marginVertical: 5,
+                                fontSize: 18,
+                               fontFamily:"LeagueSpartan-SemiBold",
+                                marginVertical: 5,marginRight:width*.03
                               }}>
                               {item.name}
                             </Text>
@@ -265,13 +265,13 @@ const RippleBG=useRef(new Animated.Value(0)).current
                               />
                             </View>
                           </View>
-                          <View style={{Width: width * 0.25}}>
+                          <View style={{Width: width * 0.25,}}>
                             <Text
                               style={{
                                 fontSize: 18,
-                                fontWeight: '600',
-                                marginVertical: 5,
+                                fontFamily:'LeagueSpartan-Regular',
                                 color: colors.orange_Base,
+                                marginTop:7
                               }}>
                               $ {item.price}
                             </Text>
@@ -279,7 +279,8 @@ const RippleBG=useRef(new Animated.Value(0)).current
                         </View>
                         <Text
                           style={{
-                            fontSize: 13,
+                            fontSize: 12,
+                            fontFamily:'LeagueSpartan-Light',
                             width: width * 0.65,
                             textAlign: 'justify',
                           }}>

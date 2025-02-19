@@ -4,6 +4,7 @@ import colors from '../../Global/Colors';
 import Dimensions from '../../Global/Dimensions';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { Bell, Cart, Shopping_Cart, User } from '../../assets/Images';
+import NsearchBar from '../../Screens/searchBar';
 
 const SearchBar = (props) => {
   const navigation=useNavigation()
@@ -14,7 +15,7 @@ const SearchBar = (props) => {
   ];
   const handleNavigation=(path)=>{
     // navigation.navigate('Cdrawer',{Data:'Hello'})
-    navigation.navigate('Favorites')
+    navigation.navigate('OnboardingScreem')
   //  navigation.dispatch(DrawerActions.openDrawer())
   }
   const {height,width}=Dimensions
@@ -24,45 +25,19 @@ const SearchBar = (props) => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginHorizontal:width*.05
+        marginHorizontal:width*.05,
+     
       }}>
-      <View
-        style={[{
-          borderRadius: width*.6,
-          width: width*.5,
-          height: width*.08,
-          backgroundColor: colors.White_1,
-          justifyContent: 'center',
-          flexDirection: 'row',
-          alignItems: 'center',
-          padding: 10
-        },props.ButtonStyle]}>
-        <TextInput style={{width: width*.42, height: width*.08}} placeholder="Search" />
-        <Pressable
-          style={{
-            width: width*.05,
-            height: width*.05,
-            borderRadius: 26,
-            backgroundColor: 'red',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          onPress={() => {
-           navigation.navigate('Drawer')
-          }}>
-          <Image
-            source={require('../../assets/Images/Slider.png')}
-            style={{width: height*.015, resizeMode: 'contain'}}
-          />
-        </Pressable>
-      </View>
       <View
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
           // width:width*.2
+          width:width*.9
         }}>
+      <NsearchBar/>
           
+          <View style={{alignItems:'flex-end',flexDirection:'row'}}>
         {!props.Icon? Data.map(item => (
           <Pressable
             key={item.Id}
@@ -83,6 +58,7 @@ const SearchBar = (props) => {
           </Pressable>
   
         )):null}
+        </View>
       </View>
     </View>
   );

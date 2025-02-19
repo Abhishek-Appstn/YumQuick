@@ -13,6 +13,7 @@ import {
   WhatApp,
 } from '../assets/Images';
 import SearchBar from '../Common/SearchBar';
+import NsearchBar from './searchBar';
 
 const ContactUs = () => {
   const {height, width} = Dimensions;
@@ -158,8 +159,11 @@ const ContactUs = () => {
                 title="Services"
               />
             </Animated.View>
-            <View style={{marginVertical: 10}}>
-              <SearchBar Icon={true} />
+            <View style={{marginVertical: 10,}}>
+              <View style={{alignItems:'center',marginBottom:width*.07}}>
+              <NsearchBar height={width*.12} width={width*.9}/>
+
+              </View>
               <ExpandingList Data={FaqData} />
             </View>
           </>

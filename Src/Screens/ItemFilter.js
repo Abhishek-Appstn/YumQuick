@@ -215,9 +215,9 @@ const ItemFilter = () => {
         value={Price}
         minimumValue={1}
         maximumValue={101}
-        minimumTrackTintColor="orange"
+        minimumTrackTintColor={Colors.orange_Base}
         maximumTrackTintColor="#d3d3d3"
-        thumbTintColor="orange"
+        thumbTintColor={Colors.orange_Base}
       />
 
             <View

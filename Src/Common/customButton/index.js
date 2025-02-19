@@ -25,7 +25,7 @@ const CustomButton = props => {
               props.type == 'small'
                 ? 18
                 : props.type === 'tiny'
-                ? 13
+                ? 15
                 : props.type === 'small-long'
                 ? 17
                 : props.type === 'tiny-long'
@@ -43,8 +43,8 @@ const CustomButton = props => {
                 : props.type === 'medium-Xlong'
                 ? 18
                 : 24,
-            fontFamily: 'LeagueSpartan-Medium',
-            fontWeight: props.type === 'tiny' ? '700' : null,
+            fontFamily: 'LeagueSpartan-Regukar',
+        
           },
           props?.StyleText,
         ]}>
@@ -74,7 +74,7 @@ const getButtonDimensions = type => {
     case 'small-Xlong':
       return {buttonHeight: width * 0.08, buttonWidth: width * 0.4};
     case 'tiny':
-      return {buttonHeight: width * 0.08, buttonWidth: width * 0.25};
+      return {buttonHeight: width * 0.065, buttonWidth: width * 0.29};
     case 'tiny-long':
       return {buttonHeight: width * 0.08, buttonWidth: width * 0.26};
     case 'tiny-Xlong':

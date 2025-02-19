@@ -62,6 +62,14 @@ import Shopping_Cart_White from './Shopping_Cart_White/Shopping_Cart_White.png';
 import Arrow_Right from './Arrow_Right/Arrow_Right.png';
 import Map from './Map/Map.png';
 import Meals from './Meals/Meals.png';
+import DeliveryRider from './DeliveryRider/DeliveryRider.png'
+import Call from './Call/Call.png'
+import Message from './Message/Message.png'
+import Coffee from './Coffee/Coffee.png'
+import Pizza from './Pizza/Pizza.png'
+import Brownie from './Brownie/Brownie.png'
+import TransferDocument_orange from './TransferDocument_orange/TransferDocument_orange.png'
+import Rider from './Rider/Rider.png'
 export {
   YumQuick_Logo,
   Logout,
@@ -125,6 +133,6 @@ export {
   Snacks,
   Shopping_Cart_White,
   Arrow_Right,
-  Map,
-  Meals,
+  Map,Coffee,
+  Meals,DeliveryRider,Call,Message,Brownie,Pizza,TransferDocument_orange,Rider
 };
