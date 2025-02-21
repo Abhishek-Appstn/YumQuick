@@ -40,6 +40,7 @@ import LiveTracking from './Src/Screens/LiveTracking';
 import History from './Src/Screens/History';
 import Favourites from './Src/Screens/Favourites';
 import OnboardingScreen from './Src/Screens/OnboardingScreen';
+import SupportChat from './Src/Screens/SupportChat';
 const {height,width}=Dimensions
 const App = () => {
   const stack = createStackNavigator();
@@ -90,7 +91,7 @@ const DrawerNavigator=()=>{
 const FooterNavigator=()=>{
   const Footer=createBottomTabNavigator()
   return(
-    <Footer.Navigator  screenOptions={{headerShown:false}}tabBar={(props)=><CustomBottomTab/>}>
+    <Footer.Navigator  screenOptions={{headerShown:false,tabBarStyle:{borderRadius:1000}}}tabBar={(props)=><CustomBottomTab{...props}/>}>
       <Footer.Screen name='Dashboard' component={Home}/>
       <Footer.Screen name='ProductPage' component={ProductPage}/>
       <Footer.Screen name='ConfirmOrder' component={ConfirmOrder}/>
@@ -103,6 +104,8 @@ const FooterNavigator=()=>{
       <Footer.Screen name='LiveTracking' component={LiveTracking}/>
       <Footer.Screen name='History' component={History}/>
       <Footer.Screen name='Favorites' component={Favourites}/>
+      <Footer.Screen name='SupportChat' component={SupportChat}/>
+
 
 
       

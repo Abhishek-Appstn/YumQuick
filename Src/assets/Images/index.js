@@ -70,6 +70,9 @@ import Pizza from './Pizza/Pizza.png'
 import Brownie from './Brownie/Brownie.png'
 import TransferDocument_orange from './TransferDocument_orange/TransferDocument_orange.png'
 import Rider from './Rider/Rider.png'
+import Share_icon from './Share_icon/Share_icon.png'
+import Microphone_On from './Microphone_On/Microphone_On.png'
+import Attachment from './Attachment/Attachment.png'
 export {
   YumQuick_Logo,
   Logout,
@@ -134,5 +137,5 @@ export {
   Shopping_Cart_White,
   Arrow_Right,
   Map,Coffee,
-  Meals,DeliveryRider,Call,Message,Brownie,Pizza,TransferDocument_orange,Rider
+  Meals,DeliveryRider,Call,Message,Brownie,Pizza,TransferDocument_orange,Rider,Share_icon,Microphone_On,Attachment
 };

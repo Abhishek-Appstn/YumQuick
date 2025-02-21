@@ -21,10 +21,8 @@ const CustomBottomTab = () => {
       style={{
         height: height * 0.09,
         borderRadius: height * 0.04,
-   
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
-
         backgroundColor: Colors.orange_Base,
         alignItems: 'center',
       }}>
