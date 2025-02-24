@@ -11,13 +11,13 @@ import {
   ScrollView,
   Animated,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import colors from '../../Global/Colors';
 import SearchBar from '../../Common/SearchBar';
 import Dimensions from '../../Global/Dimensions';
 import DisplayCard from '../../Common/DisplayCard';
 import Carousal from '../../Common/Carousal';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {
   Filter,
   Mexican_Appetizer,
@@ -25,11 +25,16 @@ import {
   Star_Yellow_Filled,
 } from '../../assets/Images';
 import Layout from '../Layout';
+import Svg, { Path } from 'react-native-svg';
+import Colors from '../../Global/Colors';
 
 const Home = () => {
+  const Aroute=useRoute()
+  const A=Aroute.params
+
   const {height, width} = Dimensions;
   const [Active, setActive] = useState(null);
-const RippleBG=useRef(new Animated.Value(0)).current
+  const RippleBG = useRef(new Animated.Value(0)).current;
   const styles = createStyle({height, width, Active});
   const data = [
     {id: '1', name: 'Snacks', image: require('../../assets/Images/Snacks.png')},
@@ -58,15 +63,20 @@ const RippleBG=useRef(new Animated.Value(0)).current
       image: Pork_Skewer,
     },
   ];
+  useEffect(() => {
+    A==true?setActive(true):null
+    
+  }, [A])
+  
   const navigation = useNavigation();
-  const StartRipple=()=>{
-    RippleBG.setValue(0)
-    Animated.timing(RippleBG,{
-      toValue:1,
-      duration:5000,
-      useNativeDriver:true
-    })
-  }
+  const StartRipple = () => {
+    RippleBG.setValue(0);
+    Animated.timing(RippleBG, {
+      toValue: 1,
+      duration: 5000,
+      useNativeDriver: true,
+    });
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={{justifyContent: 'center'}}>
@@ -87,7 +97,7 @@ const RippleBG=useRef(new Animated.Value(0)).current
           style={{
             borderBottomWidth: Active == null ? StyleSheet.hairlineWidth : 0,
             borderColor: colors.orange_Base,
-            height: width * 0.3,
+            height: width * 0.26,
             alignItems: 'center',
             justifyContent: 'space-between',
             paddingBottom: Active == null ? 10 : 0,
@@ -102,6 +112,7 @@ const RippleBG=useRef(new Animated.Value(0)).current
             }}
             scrollEnabled={false}
             renderItem={({item, index}) => (
+              <>
               <Pressable
                 style={[
                   styles.flatlistContainer,
@@ -124,7 +135,7 @@ const RippleBG=useRef(new Animated.Value(0)).current
                   }}
                 /> */}
 
-                <View style={styles.flatlistInnerContainer}>
+                <View style={[styles.flatlistInnerContainer,{backgroundColor:Active===index?Colors.yellow_Base:Colors.yellow}]}>
                   <Image source={item.image} style={styles.flatlistImage} />
                 </View>
                 <Text
@@ -136,19 +147,21 @@ const RippleBG=useRef(new Animated.Value(0)).current
                   {item.name}
                 </Text>
               </Pressable>
+              </>
             )}
           />
         </View>
         {Active == null ? (
           <ScrollView
             showsVerticalScrollIndicator={false}
-            style={{paddingHorizontal: 20}}>
+            style={{paddingHorizontal: 20,}}
+            contentContainerStyle={{marginTop:10}}>
             <DisplayCard title="Best Seller" more />
             <Carousal />
             <DisplayCard title="Recomended" type="large" />
           </ScrollView>
         ) : (
-          <View style={{backgroundColor: colors.White_Bg}}>
+          <View style={{backgroundColor: colors.White_Bg,borderTopLeftRadius:20,borderTopRightRadius:20}}>
             <View
               style={{
                 height: height * 0.56,
@@ -164,11 +177,9 @@ const RippleBG=useRef(new Animated.Value(0)).current
                   justifyContent: 'space-between',
                   alignItems: 'center',
                 }}>
-                <Text style={{fontFamily:'LeagueSpartan-Light',fontSize:12}}>
+                <Text style={{fontFamily: 'LeagueSpartan-Light', fontSize: 12}}>
                   Sort By{' '}
-                  <Text style={{color: colors.orange_Base,}}>
-                    Popular
-                  </Text>
+                  <Text style={{color: colors.orange_Base}}>Popular</Text>
                 </Text>
                 <View
                   style={{
@@ -192,7 +203,8 @@ const RippleBG=useRef(new Animated.Value(0)).current
                       style={{
                         paddingVertical: 15,
                         borderColor: colors.orange_Base,
-                        borderBottomWidth: 0.4,justifyContent:'center'
+                        borderBottomWidth: 0.4,
+                        justifyContent: 'center',
                       }}>
                       <Image
                         style={{
@@ -217,13 +229,15 @@ const RippleBG=useRef(new Animated.Value(0)).current
                               flexDirection: 'row',
                               alignItems: 'center',
                               justifyContent: 'space-between',
-                              width: width * 0.55,marginTop:10
+                              width: width * 0.55,
+                              marginTop: 10,
                             }}>
                             <Text
                               style={{
                                 fontSize: 18,
-                               fontFamily:"LeagueSpartan-SemiBold",
-                                marginVertical: 5,marginRight:width*.03
+                                fontFamily: 'LeagueSpartan-SemiBold',
+                                marginVertical: 5,
+                                marginRight: width * 0.03,
                               }}>
                               {item.name}
                             </Text>
@@ -265,13 +279,13 @@ const RippleBG=useRef(new Animated.Value(0)).current
                               />
                             </View>
                           </View>
-                          <View style={{Width: width * 0.25,}}>
+                          <View style={{Width: width * 0.25}}>
                             <Text
                               style={{
                                 fontSize: 18,
-                                fontFamily:'LeagueSpartan-Regular',
+                                fontFamily: 'LeagueSpartan-Regular',
                                 color: colors.orange_Base,
-                                marginTop:7
+                                marginTop: 7,
                               }}>
                               $ {item.price}
                             </Text>
@@ -280,7 +294,7 @@ const RippleBG=useRef(new Animated.Value(0)).current
                         <Text
                           style={{
                             fontSize: 12,
-                            fontFamily:'LeagueSpartan-Light',
+                            fontFamily: 'LeagueSpartan-Light',
                             width: width * 0.65,
                             textAlign: 'justify',
                           }}>

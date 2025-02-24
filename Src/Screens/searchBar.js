@@ -30,7 +30,7 @@ const NsearchBar = (props) => {
                justifyContent: 'center',
              }}
              onPress={() => {
-              navigation.navigate('SupportChat')
+              navigation.navigate('Test')
              }}>
              <Image
                source={require('../assets/Images/Slider.png')}

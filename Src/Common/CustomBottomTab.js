@@ -10,11 +10,11 @@ const CustomBottomTab = () => {
   const {height, width} = Dimensions;
   const navigation=useNavigation()
   const Data = [
-    {Name: 'Home', Icon: Home_White, navigate:'HelpPage'},
-    {Name: 'Dine', Icon: Dine},
-    {Name: 'Favourite', Icon: Heart},
-    {Name: 'Orders', Icon: Clipboard},
-    {Name: 'Support', Icon: Support},
+    {Name: 'Home', Icon: Home_White, navigate:'Dashboard'},
+    {Name: 'Dine', Icon: Dine,navigate:'Home'},
+    {Name: 'Favourite', Icon: Heart,navigate:'Favorites'},
+    {Name: 'Orders', Icon: Clipboard,navigate:'Orders'},
+    {Name: 'Support', Icon: Support,navigate:'Home'},
   ];
   return (
     <SafeAreaView

@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, SafeAreaView, Image} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView, Image, Alert} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import PageHeader from '../../Common/PageHeader';
 import colors from '../../Global/Colors';
@@ -21,7 +21,8 @@ const SetFingerprint = () => {
     }, 5000);
   }, []);
   const handleNavigation = path => {
-    navigation.navigate(path);
+    Fingerprint?
+    navigation.navigate(path):Alert.alert("Error","Set your fingerprint to continue")
   };
   return (
     <>
@@ -47,7 +48,7 @@ const SetFingerprint = () => {
             buttonColor={colors.Orange_2}
             textColor={colors.orange_Base}
             onPress={() => {
-              handleNavigation('Login');
+              navigation.navigate('Login');
             }}
           />
           <CustomButton            type="small-Xlong"

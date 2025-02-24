@@ -1,5 +1,5 @@
 import {View, Text, SafeAreaView} from 'react-native';
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Splash from './Src/Screens/Splash';
@@ -9,7 +9,7 @@ import Signup from './Src/Screens/SignUp';
 import SetPassword from './Src/Screens/SetPassword';
 import SetFingerprint from './Src/Screens/setFingerprint';
 import Home from './Src/Screens/Home';
-import { createDrawerNavigator, useDrawerStatus } from '@react-navigation/drawer';
+import {createDrawerNavigator, useDrawerStatus} from '@react-navigation/drawer';
 import CustomDrawer from './Src/Screens/Drawer';
 import Dimensions from './Src/Global/Dimensions';
 import Orders from './Src/Screens/Orders';
@@ -25,7 +25,7 @@ import ContactUs from './Src/Screens/ContactUs';
 import Settings from './Src/Screens/Settings';
 import NotificationSettings from './Src/Screens/NotificationSettings';
 import ChangePassword from './Src/Screens/ChangePassword';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import CustomBottomTab from './Src/Common/CustomBottomTab';
 import ProductPage from './Src/Screens/ProductPage';
 import ConfirmOrder from './Src/Screens/ConfirmOrder';
@@ -41,7 +41,8 @@ import History from './Src/Screens/History';
 import Favourites from './Src/Screens/Favourites';
 import OnboardingScreen from './Src/Screens/OnboardingScreen';
 import SupportChat from './Src/Screens/SupportChat';
-const {height,width}=Dimensions
+import testPage from './Src/Screens/testPage';
+const {height, width} = Dimensions;
 const App = () => {
   const stack = createStackNavigator();
   return (
@@ -49,78 +50,80 @@ const App = () => {
       <stack.Navigator screenOptions={{headerShown: false}}>
         <stack.Screen name="Splash" component={Splash} />
         <stack.Screen name="landingPage" component={LandingScreen} />
-      <stack.Screen name="Drawer" component={DrawerNavigator} />
+        <stack.Screen name="Drawer" component={DrawerNavigator} />
         <stack.Screen name="Login" component={Login} />
         <stack.Screen name="Signup" component={Signup} />
         <stack.Screen name="setPassword" component={SetPassword} />
         <stack.Screen name="setFingerprint" component={SetFingerprint} />
-    <stack.Screen name='Confirmation' component={Confirmation}/>
-    <stack.Screen name='Review' component={Review}/>
-    <stack.Screen name='Profile' component={Profile}/>
-    <stack.Screen name='AddressSelection' component={AddressSelection}/>
-    <stack.Screen name='AddAddress' component={AddAddress}/>
-    <stack.Screen name='PaymentMethod' component={PaymentMethod}/>
-    <stack.Screen name='AddNewCard' component={AddNewCard}/>
-    <stack.Screen name='ContactUs' component={ContactUs}/>
-    <stack.Screen name='Settings' component={Settings}/>
-    <stack.Screen name='NotificationSettings' component={NotificationSettings}/>
-    <stack.Screen name='ChangePassword' component={ChangePassword}/>
-    <stack.Screen name='OnboardingScreem' component={OnboardingScreen}/>
-
-
-    
+        <stack.Screen name="Confirmation" component={Confirmation} />
+        <stack.Screen name="Review" component={Review} />
+        <stack.Screen name="Profile" component={Profile} />
+        <stack.Screen name="AddressSelection" component={AddressSelection} />
+        <stack.Screen name="AddAddress" component={AddAddress} />
+        <stack.Screen name="PaymentMethod" component={PaymentMethod} />
+        <stack.Screen name="AddNewCard" component={AddNewCard} />
+        <stack.Screen name="ContactUs" component={ContactUs} />
+        <stack.Screen name="Settings" component={Settings} />
+        <stack.Screen
+          name="NotificationSettings"
+          component={NotificationSettings}
+        />
+        <stack.Screen name="ChangePassword" component={ChangePassword} />
+        <stack.Screen name="OnboardingScreem" component={OnboardingScreen} />
       </stack.Navigator>
     </NavigationContainer>
-
   );
 };
-const DrawerNavigator=()=>{
-  const Drawer=createDrawerNavigator()
-  return(
-    <Drawer.Navigator screenOptions={{headerShown:false,drawerHideStatusBarOnOpen:true,drawerPosition:'right',drawerType:'front',drawerStyle:{borderTopLeftRadius:width*.2,borderBottomLeftRadius:width*.2,overflow:'hidden',width:width*.84}}} drawerContent={(props) => <CustomDrawer {...props} />}>
-    <Drawer.Screen name='Home' component={FooterNavigator}/>
-    <Drawer.Screen name='Orders' component={Orders}/>
-    <Drawer.Screen name='CancelOrder' component={CancelOrders}/>
-    <Drawer.Screen name='Confirmation' component={Confirmation}/>
-    <Drawer.Screen name='HelpPage' component={Help}/>
-
+const DrawerNavigator = () => {
+  const Drawer = createDrawerNavigator();
+  return (
+    <Drawer.Navigator
+      screenOptions={{
+        headerShown: false,
+        drawerHideStatusBarOnOpen: true,
+        drawerPosition: 'right',
+        drawerType: 'front',
+        drawerStyle: {
+          borderTopLeftRadius: width * 0.2,
+          borderBottomLeftRadius: width * 0.2,
+          overflow: 'hidden',
+          width: width * 0.84,
+        },
+      }}
+      drawerContent={props => <CustomDrawer {...props} />}>
+      <Drawer.Screen name="Home" component={FooterNavigator} />
+      <Drawer.Screen name="Orders" component={Orders} />
+      <Drawer.Screen name="CancelOrder" component={CancelOrders} />
+      <Drawer.Screen name="Confirmation" component={Confirmation} />
+      <Drawer.Screen name="Test" component={testPage} />
     </Drawer.Navigator>
-  )
-}
+  );
+};
 
-const FooterNavigator=()=>{
-  const Footer=createBottomTabNavigator()
-  return(
-    <Footer.Navigator  screenOptions={{headerShown:false,tabBarStyle:{borderRadius:1000}}}tabBar={(props)=><CustomBottomTab{...props}/>}>
-      <Footer.Screen name='Dashboard' component={Home}/>
-      <Footer.Screen name='ProductPage' component={ProductPage}/>
-      <Footer.Screen name='ConfirmOrder' component={ConfirmOrder}/>
-      <Footer.Screen name='Payment' component={Payment}/>
-      <Footer.Screen name='Delivery Time' component={DeliveryTime}/>
-      <Footer.Screen name='Best Seller' component={BestSeller}/>
-      <Footer.Screen name='Filter' component={ItemFilter}/>
-      <Footer.Screen name='Recomendations' component={Recomendations}/>
-      <Footer.Screen name='OrderDetails' component={OrderDetails}/>
-      <Footer.Screen name='LiveTracking' component={LiveTracking}/>
-      <Footer.Screen name='History' component={History}/>
-      <Footer.Screen name='Favorites' component={Favourites}/>
-      <Footer.Screen name='SupportChat' component={SupportChat}/>
-
-
-
-      
-      
-
-      
-
-
-
-
-
-      
-
+const FooterNavigator = () => {
+  const Footer = createBottomTabNavigator();
+  return (
+    <Footer.Navigator
+      screenOptions={{headerShown: false, 
+        tabBarStyle: { backgroundColor: 'transparent' },
+      }}
+    
+      tabBar={props => <CustomBottomTab {...props} />}>
+      <Footer.Screen name="Dashboard" component={Home} />
+      <Footer.Screen name="ProductPage" component={ProductPage} />
+      <Footer.Screen name="ConfirmOrder" component={ConfirmOrder} />
+      <Footer.Screen name="Payment" component={Payment} />
+      <Footer.Screen name="Delivery Time" component={DeliveryTime} />
+      <Footer.Screen name="Best Seller" component={BestSeller} />
+      <Footer.Screen name="Filter" component={ItemFilter} />
+      <Footer.Screen name="Recomendations" component={Recomendations} />
+      <Footer.Screen name="OrderDetails" component={OrderDetails} />
+      <Footer.Screen name="LiveTracking" component={LiveTracking} />
+      <Footer.Screen name="History" component={History} />
+      <Footer.Screen name="Favorites" component={Favourites} />
+      <Footer.Screen name="SupportChat" component={SupportChat} />
     </Footer.Navigator>
-  )
-}
+  );
+};
 
 export default App;

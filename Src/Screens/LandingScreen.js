@@ -22,7 +22,7 @@ const LandingScreen = () => {
         <Text style={styles.SubText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</Text>
       </View>
       <View style={styles.buttonView}>
-        <CustomButton  buttonColor={colors.yellow_Base} textColor={colors.orange_Base} title="Log In" onPress={() => handleNavigation('Login')} />
+        <CustomButton  buttonColor={colors.yellow_Base} textColor={colors.orange_Base} title="Log In" onPress={() => handleNavigation('OnboardingScreem')} />
         <CustomButton height={height * .06} buttonColor={colors.yellow} textColor={colors.orange_Base} title="Sign Up" onPress={() => handleNavigation('Signup')}/>
       </View>
       </View>

@@ -19,6 +19,8 @@ const data = [
 ];
 
 const Carousal = props => {
+  
+  
   const {height, width} = Dimensions;
   const styles = createStyles({height, width});
   const [activeCarousal, setactiveCarousal] = useState(0);
