@@ -18,6 +18,7 @@ import Dimensions from '../../Global/Dimensions';
 import DisplayCard from '../../Common/DisplayCard';
 import Carousal from '../../Common/Carousal';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 import {
   Filter,
   Mexican_Appetizer,
@@ -25,12 +26,13 @@ import {
   Star_Yellow_Filled,
 } from '../../assets/Images';
 import Layout from '../Layout';
-import Svg, { Path } from 'react-native-svg';
+import Svg, {Path} from 'react-native-svg';
 import Colors from '../../Global/Colors';
 
+
 const Home = () => {
-  const Aroute=useRoute()
-  const A=Aroute.params
+  const Aroute = useRoute();
+  const A = Aroute.params;
 
   const {height, width} = Dimensions;
   const [Active, setActive] = useState(null);
@@ -62,12 +64,39 @@ const Home = () => {
       desc: 'Marinated in a rich blend of herbs and spices, then grilled to perfection, served with a side of zesty dipping sauce.',
       image: Pork_Skewer,
     },
+    {
+      name: 'Mexican Appetizer',
+      rating: '5.0',
+      price: 15.99,
+      desc: 'Tortilla Chips With Toppins',
+      image: Mexican_Appetizer,
+    },
+    {
+      name: 'Pork Skewer',
+      rating: '4.0',
+      price: 13.99,
+      desc: 'Marinated in a rich blend of herbs and spices, then grilled to perfection, served with a side of zesty dipping sauce.',
+      image: Pork_Skewer,
+    },
+    {
+      name: 'Mexican Appetizer',
+      rating: '5.0',
+      price: 15.99,
+      desc: 'Tortilla Chips With Toppins',
+      image: Mexican_Appetizer,
+    },
+    {
+      name: 'Pork Skewer',
+      rating: '4.0',
+      price: 13.99,
+      desc: 'Marinated in a rich blend of herbs and spices, then grilled to perfection, served with a side of zesty dipping sauce.',
+      image: Pork_Skewer,
+    },
   ];
   useEffect(() => {
-    A==true?setActive(true):null
-    
-  }, [A])
-  
+    A == true ? setActive(true) : null;
+  }, [A]);
+  const Length = data.length;
   const navigation = useNavigation();
   const StartRipple = () => {
     RippleBG.setValue(0);
@@ -83,231 +112,256 @@ const Home = () => {
         <View style={{paddingTop: height * 0.02}}>
           <SearchBar />
         </View>
+
         <View style={{padding: 20}}>
-          <Text style={styles.headerText}>Good Morning</Text>
-          <Text style={styles.subText}>
-            Rise And Shine! It's Breakfast Time
-          </Text>
+          {Active == null ? (
+            <>
+              <Text style={styles.headerText}>Good Morning</Text>
+              <Text style={styles.subText}>
+                Rise And Shine! It's Breakfast Time
+              </Text>
+            </>
+          ) : null}
         </View>
       </View>
 
       <View style={styles.innerContainer}>
-        {/* <View style={{backgroundColor:colors.orange_Base}}> */}
-        <View
-          style={{
-            borderBottomWidth: Active == null ? StyleSheet.hairlineWidth : 0,
-            borderColor: colors.orange_Base,
-            height: width * 0.26,
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            paddingBottom: Active == null ? 10 : 0,
-            alignSelf: 'center',
-          }}>
-          <FlatList
-            data={data}
-            horizontal={true}
-            contentContainerStyle={{
-              width: width * 0.9,
+        <ScrollView
+          contentContainerStyle={{backgroundColor:Active!==null?Colors.orange_Base:Colors.White_Bg}}
+          showsVerticalScrollIndicator={false}>
+          <View
+            style={{
+              borderBottomWidth: Active == null ? StyleSheet.hairlineWidth : 0,
+              borderColor: colors.orange_Base,
+              height: width * 0.255,
+              alignItems: 'center',
               justifyContent: 'space-between',
-            }}
-            scrollEnabled={false}
-            renderItem={({item, index}) => (
-              <>
-              <Pressable
-                style={[
-                  styles.flatlistContainer,
-                  {backgroundColor: Active === index ? colors.White_1 : null},
-                ]}
-                onPress={() => {
-                  Active == index ? setActive(null) : setActive(index);
-                }}>
-                {/* {Active === index ?  <View style={{position:'absolute', width: 20,bottom:-20,left:-10,
-    height: 60,
-    borderTopRightRadius: 290,
-    borderBottomRightRadius: 200, transform:[{rotateX:'50deg'}],
-    backgroundColor: colors.White_1}}/>:null} */}
-                {/* <View
-                  style={{
-                    backgroundColor: 'red',
-                    zIndex: 3,
-                    position: 'absolute',
-                    bottom: 0,
-                  }}
-                /> */}
-
-                <View style={[styles.flatlistInnerContainer,{backgroundColor:Active===index?Colors.yellow_Base:Colors.yellow}]}>
-                  <Image source={item.image} style={styles.flatlistImage} />
-                </View>
-                <Text
-                  style={{
-                    fontSize: 12,
-                    fontFamily: 'LeagueSpartan-Regular',
-                    color: colors.Font,
-                  }}>
-                  {item.name}
-                </Text>
-              </Pressable>
-              </>
-            )}
-          />
-        </View>
-        {Active == null ? (
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            style={{paddingHorizontal: 20,}}
-            contentContainerStyle={{marginTop:10}}>
-            <DisplayCard title="Best Seller" more />
-            <Carousal />
-            <DisplayCard title="Recomended" type="large" />
-          </ScrollView>
-        ) : (
-          <View style={{backgroundColor: colors.White_Bg,borderTopLeftRadius:20,borderTopRightRadius:20}}>
+            }}>
+            <FlatList
+              data={data}
+              key={data.id}
+              horizontal={true}
+              scrollEnabled={false}
+              contentContainerStyle={{
+                width: width,
+                paddingLeft: 15,paddingTop:5,
+                backgroundColor:Active!==null?Colors.orange_Base:Colors.White_Bg
+              }}
+              renderItem={({item, index}) => (
+                <>
+                  <Pressable
+                    style={[styles.flatlistContainer, {marginHorizontal: 13}]}
+                    onPress={() => {
+                      Active == index ? setActive(null) : setActive(index);
+                    }}>
+                    {Active === index ? (
+                      <Svg
+                        width={123}
+                        height={98}
+                        viewBox="0 0 123 93"
+                        style={{position: 'absolute', zIndex: -1}}
+                        fill="none">
+                        <Path
+                          d="M96.1636 26.8269C96.1636 12.0108 84.1486 0 69.3272 0H53.6726C38.8513 0 26.8363 12.0108 26.8363 26.8269V66.1731C26.8363 80.9892 14.8213 93 0 93H123C108.179 93 96.1636 80.9892 96.1636 66.1731V26.8269Z"
+                          fill="#F5F5F5"
+                        />
+                      </Svg>
+                    ) : null}
+                    <View
+                      style={[
+                        styles.flatlistInnerContainer,
+                        {
+                          backgroundColor:
+                            Active === index
+                              ? Colors.yellow_Base
+                              : Colors.yellow,
+                          zIndex: 88,
+                        },
+                      ]}>
+                      <Image source={item.image} style={styles.flatlistImage} />
+                    </View>
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        fontFamily: 'LeagueSpartan-Regular',
+                        color: colors.Font,
+                      }}>
+                      {item.name}
+                    </Text>
+                  </Pressable>
+                </>
+              )}
+            />
+          </View>
+          {Active == null ? (
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{paddingHorizontal: 20}}
+              contentContainerStyle={{marginTop: 10}}>
+              <DisplayCard title="Best Seller" more />
+              <Carousal />
+              <DisplayCard title="Recomended" type="large" />
+            </ScrollView>
+          ) : (
             <View
               style={{
-                height: height * 0.56,
-                width: width * 0.9,
-                alignSelf: 'center',
-                marginVertical: 20,
-                borderTopRightRadius: 20,
-                borderTopLeftRadius: 20,
+                borderTopLeftRadius: Active == 0 ? 0 : 20,
+                borderTopRightRadius: Active + 1 == Length ? 0 : 20,
+                backgroundColor:Colors.White_Bg
               }}>
               <View
                 style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
+               
+                  width: width * 0.9,
+                  alignSelf: 'center',
+                  marginVertical: 20,
+                  borderTopRightRadius: 20,
+                  borderTopLeftRadius: 20,
+
                 }}>
-                <Text style={{fontFamily: 'LeagueSpartan-Light', fontSize: 12}}>
-                  Sort By{' '}
-                  <Text style={{color: colors.orange_Base}}>Popular</Text>
-                </Text>
                 <View
                   style={{
-                    height: 30,
-                    width: 30,
-                    backgroundColor: colors.orange_Base,
-                    borderRadius: 15,
-                    justifyContent: 'center',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
                   }}>
-                  <Image source={Filter} style={{height: height * 0.013}} />
+                  <Text
+                    style={{fontFamily: 'LeagueSpartan-Light', fontSize: 12}}>
+                    Sort By{' '}
+                    <Text style={{color: colors.orange_Base}}>Popular</Text>
+                  </Text>
+                  <View
+                    style={{
+                      height: 30,
+                      width: 30,
+                      backgroundColor: colors.orange_Base,
+                      borderRadius: 15,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Image source={Filter} style={{height: height * 0.013}} />
+                  </View>
                 </View>
-              </View>
-              <FlatList
-                data={SecData}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{paddingBottom: 50}}
-                renderItem={({item, index}) => {
-                  return (
-                    <View
-                      style={{
-                        paddingVertical: 15,
-                        borderColor: colors.orange_Base,
-                        borderBottomWidth: 0.4,
-                        justifyContent: 'center',
-                      }}>
-                      <Image
+                <FlatList
+                  data={SecData}
+                  key={SecData.name}
+                  showsVerticalScrollIndicator={false}
+                  contentContainerStyle={{}}
+                  renderItem={({item, index}) => {
+                    return (
+                      <Pressable
                         style={{
-                          height: height * 0.25,
-                          width: width * 0.89,
-                          borderRadius: (width * 0.2) / 3,
-                          alignSelf: 'center',
-                          resizeMode: 'cover',
+                          paddingVertical: 15,
+                          borderColor: colors.orange_Base,
+                          borderBottomWidth: 0.4,
+                          justifyContent: 'center',
                         }}
-                        source={item.image}
-                      />
-
-                      <View>
-                        <View
+                        onPress={() => {
+                          navigation.navigate('ProductPage', {item});
+                        }}>
+                        <Image
                           style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                          }}>
+                            height: height * 0.25,
+                            width: width * 0.89,
+                            borderRadius: (width * 0.2) / 3,
+                            alignSelf: 'center',
+                            resizeMode: 'cover',
+                          }}
+                          source={item.image}
+                        />
+
+                        <View>
                           <View
                             style={{
                               flexDirection: 'row',
-                              alignItems: 'center',
                               justifyContent: 'space-between',
-                              width: width * 0.55,
-                              marginTop: 10,
+                              alignItems: 'center',
                             }}>
-                            <Text
-                              style={{
-                                fontSize: 18,
-                                fontFamily: 'LeagueSpartan-SemiBold',
-                                marginVertical: 5,
-                                marginRight: width * 0.03,
-                              }}>
-                              {item.name}
-                            </Text>
-
                             <View
                               style={{
-                                backgroundColor: colors.orange_Base,
-                                height: height * 0.009,
-                                width: height * 0.009,
-                                borderRadius: (height * 0.02) / 2,
-                                marginHorizontal: 10,
-                              }}
-                            />
-
-                            <View
-                              style={{
-                                backgroundColor: colors.orange_Base,
-                                height: width * 0.06,
-                                width: width * 0.12,
-                                borderRadius: (height * 0.2) / 2,
-                                alignItems: 'center',
-                                justifyContent: 'space-evenly',
                                 flexDirection: 'row',
-                                padding: 2,
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                width: width * 0.55,
+                                marginTop: 10,
                               }}>
                               <Text
                                 style={{
-                                  color: colors.White_1,
-                                  fontWeight: '600',
+                                  fontSize: 18,
+                                  fontFamily: 'LeagueSpartan-SemiBold',
+                                  marginVertical: 5,
+                                  marginRight: width * 0.03,
                                 }}>
-                                {item.rating}
+                                {item.name}
                               </Text>
-                              <Image
-                                source={Star_Yellow_Filled}
+
+                              <View
                                 style={{
-                                  height: height * 0.016,
-                                  width: height * 0.016,
+                                  backgroundColor: colors.orange_Base,
+                                  height: height * 0.009,
+                                  width: height * 0.009,
+                                  borderRadius: (height * 0.02) / 2,
+                                  marginHorizontal: 10,
                                 }}
                               />
+
+                              <View
+                                style={{
+                                  backgroundColor: colors.orange_Base,
+                                  height: width * 0.06,
+                                  width: width * 0.12,
+                                  borderRadius: (height * 0.2) / 2,
+                                  alignItems: 'center',
+                                  justifyContent: 'space-evenly',
+                                  flexDirection: 'row',
+                                  padding: 2,
+                                }}>
+                                <Text
+                                  style={{
+                                    color: colors.White_1,
+                                    fontWeight: '600',
+                                  }}>
+                                  {item.rating}
+                                </Text>
+                                <Image
+                                  source={Star_Yellow_Filled}
+                                  style={{
+                                    height: height * 0.016,
+                                    width: height * 0.016,
+                                  }}
+                                />
+                              </View>
+                            </View>
+                            <View style={{Width: width * 0.25}}>
+                              <Text
+                                style={{
+                                  fontSize: 18,
+                                  fontFamily: 'LeagueSpartan-Regular',
+                                  color: colors.orange_Base,
+                                  marginTop: 7,
+                                }}>
+                                $ {item.price}
+                              </Text>
                             </View>
                           </View>
-                          <View style={{Width: width * 0.25}}>
-                            <Text
-                              style={{
-                                fontSize: 18,
-                                fontFamily: 'LeagueSpartan-Regular',
-                                color: colors.orange_Base,
-                                marginTop: 7,
-                              }}>
-                              $ {item.price}
-                            </Text>
-                          </View>
+                          <Text
+                            style={{
+                              fontSize: 12,
+                              fontFamily: 'LeagueSpartan-Light',
+                              width: width * 0.65,
+                              textAlign: 'justify',
+                            }}>
+                            {item.desc}
+                          </Text>
                         </View>
-                        <Text
-                          style={{
-                            fontSize: 12,
-                            fontFamily: 'LeagueSpartan-Light',
-                            width: width * 0.65,
-                            textAlign: 'justify',
-                          }}>
-                          {item.desc}
-                        </Text>
-                      </View>
-                    </View>
-                  );
-                }}
-              />
+                      </Pressable>
+                    );
+                  }}
+                />
+              </View>
             </View>
-          </View>
-        )}
+          )}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -321,11 +375,11 @@ const createStyle = ({height, width, Active}) =>
       backgroundColor: colors.yellow_Base,
     },
     innerContainer: {
-      backgroundColor: Active !== null ? colors.orange_Base : colors.White_Bg,
+      backgroundColor:  colors.White_Bg,
       top: -5,
       height: width * 1.65,
       borderRadius: 27,
-      paddingTop: 7,
+      overflow:'hidden'
       // paddingHorizontal:20
     },
     flatlistContainer: {
@@ -342,7 +396,7 @@ const createStyle = ({height, width, Active}) =>
       borderRadius: (width * 0.16) / 2,
       marginVertical: 5,
       marginTop: 10,
-      paddingHorizontal: 30,
+      paddingHorizontal: 10,
     },
     flatlistImage: {
       width: width * 0.09,

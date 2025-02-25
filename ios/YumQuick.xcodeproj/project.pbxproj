@@ -27,7 +27,7 @@
 		26DF5FA490D240D590F98E39 /* Inter_24pt-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01B6A06F81E64EEBB4CD5714 /* Inter_24pt-Black.ttf */; };
 		2780A3FBF2EE4861B7ED0F90 /* Inter_28pt-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D773E8C8ADC848259FE1E264 /* Inter_28pt-Bold.ttf */; };
 		281B42D2C4B14B4C88E2F36C /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9B9F1DA36E542ADAF788994 /* Poppins-ThinItalic.ttf */; };
-		2B9750EC2D633AE80073C018 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B9750EB2D633AE80073C018 /* GoogleService-Info.plist */; };
+		2B95C6FA2D6DD8A2009CF043 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B95C6F92D6DD8A2009CF043 /* GoogleService-Info.plist */; };
 		2F1905682A9E4B098756F810 /* Inter_28pt-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82AD4A2DF45D43B398538069 /* Inter_28pt-Italic.ttf */; };
 		2FC5CC4C1D3942C29D9AE628 /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFB8D45D057C4440BEF53654 /* Poppins-BoldItalic.ttf */; };
 		330A68352AF142FB9329A9C9 /* Inter_28pt-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D283A6B9FF244D51905644C2 /* Inter_28pt-BlackItalic.ttf */; };
@@ -113,7 +113,8 @@
 		1F41021EC7F54EE09E9FCBAA /* Inter_18pt-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-BlackItalic.ttf"; path = "../Src/assets/fonts/Inter_18pt-BlackItalic.ttf"; sourceTree = "<group>"; };
 		23CA2FC1F84D484CAE9EB96E /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../Src/assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
 		29811307CED84457AEE79A3E /* LeagueSpartan-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "LeagueSpartan-Black.ttf"; path = "../Src/assets/fonts/LeagueSpartan-Black.ttf"; sourceTree = "<group>"; };
-		2B9750EB2D633AE80073C018 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B95C6F92D6DD8A2009CF043 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B95C6FB2D6DDC2C009CF043 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2EDDE93552A4408E9DB76821 /* Inter_28pt-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_28pt-LightItalic.ttf"; path = "../Src/assets/fonts/Inter_28pt-LightItalic.ttf"; sourceTree = "<group>"; };
 		31896EB9997B06AADF5A070B /* Pods_YumQuick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YumQuick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D1CAC9A2074C09B909530F /* Inter_18pt-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Medium.ttf"; path = "../Src/assets/fonts/Inter_18pt-Medium.ttf"; sourceTree = "<group>"; };
@@ -208,6 +209,7 @@
 		13B07FAE1A68108700A75B9A /* YumQuick */ = {
 			isa = PBXGroup;
 			children = (
+				2B95C6F92D6DD8A2009CF043 /* GoogleService-Info.plist */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -236,7 +238,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				2B9750EB2D633AE80073C018 /* GoogleService-Info.plist */,
+				2B95C6FB2D6DDC2C009CF043 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* YumQuick */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -441,7 +443,6 @@
 				F57C19B985924F7AB541D571 /* Poppins-Light.ttf in Resources */,
 				6FC74B8E4B274A22A9905EE3 /* Poppins-LightItalic.ttf in Resources */,
 				0D8658CEB19C4A319BBA9C24 /* Poppins-Medium.ttf in Resources */,
-				2B9750EC2D633AE80073C018 /* GoogleService-Info.plist in Resources */,
 				71F80F69BD544AFAA6019DFE /* Poppins-MediumItalic.ttf in Resources */,
 				E70D4CCA236A438FB31FFCDD /* Poppins-Regular.ttf in Resources */,
 				D3A98EAA2D6C4235B1F1A272 /* Poppins-SemiBold.ttf in Resources */,
@@ -478,6 +479,7 @@
 				83A97310AF3045A281E03F35 /* Inter_24pt-Light.ttf in Resources */,
 				F1118099FBFC45868A448B53 /* Inter_24pt-LightItalic.ttf in Resources */,
 				EA74289903EC4255948D11EC /* Inter_24pt-Medium.ttf in Resources */,
+				2B95C6FA2D6DD8A2009CF043 /* GoogleService-Info.plist in Resources */,
 				1A8DCD1646544F52AA4E1512 /* Inter_24pt-MediumItalic.ttf in Resources */,
 				C22B131B70CF459C816357E8 /* Inter_24pt-Regular.ttf in Resources */,
 				BD48E5C09E444E62B370BC18 /* Inter_24pt-SemiBold.ttf in Resources */,
@@ -613,7 +615,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = YumQuick/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -629,6 +634,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = YumQuick;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -641,7 +647,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = YumQuick/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -656,6 +665,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = YumQuick;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

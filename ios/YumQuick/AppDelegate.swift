@@ -1,5 +1,5 @@
 import UIKit
-import Firebase
+import FirebaseCore
 import React
 import React_RCTAppDelegate
 import ReactAppDependencyProvider
@@ -7,7 +7,7 @@ import ReactAppDependencyProvider
 @main
 class AppDelegate: RCTAppDelegate {
   override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()  // Add this line
+    FirebaseApp.configure() 
     self.moduleName = "YumQuick"
     self.dependencyProvider = RCTAppDependencyProvider()
 

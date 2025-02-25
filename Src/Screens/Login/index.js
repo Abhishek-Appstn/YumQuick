@@ -17,7 +17,8 @@ import SignupIcons from '../../Common/Signup Icons';
 import Dimensions from '../../Global/Dimensions';
 import Colors from '../../Global/Colors';
 import {EmailValidation} from '../../Global/Validations/validations';
-import auth, { getAuth, signInWithEmailAndPassword } from '@react-native-firebase/auth'
+import { getAuth, signInWithEmailAndPassword } from '@react-native-firebase/auth'
+import Snackbar from 'react-native-snackbar';
 
 const Login = () => {
   const {height, width} = Dimensions;
@@ -51,12 +52,23 @@ const Login = () => {
         );
   };
   const LoginCall=()=>{
-    console.log("enterted")
     const auth=getAuth()
-    signInWithEmailAndPassword(auth,FormData.email,FormData.password).then(response=>{
+    signInWithEmailAndPassword(auth,FormData.email,FormData.password.toString()).then(response=>{
       console.log(response,'Signin SUccess')
+    Snackbar.show({
+      text:'Login Successful',
+      backgroundColor:'green'
+    })
+    navigation.navigate('Drawer')
     })
     .catch(error=>{
+      // error=='[auth/invalid-credential]'?
+      Snackbar.show({
+        text:'Invalid Credentials',
+        backgroundColor:'red',
+        textColor:'#fff'
+      })
+      // :
       console.log("===========================>",error)
     })
   }

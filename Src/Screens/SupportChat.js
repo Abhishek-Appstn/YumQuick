@@ -57,9 +57,9 @@ const SupportChat = () => {
         renderActions={() => (
           <Pressable
             style={{
-              height: width * 0.09,
-              width: width * 0.09,
-              borderRadius: 10,
+              height: width * 0.08,
+              width: width * 0.08,
+              borderRadius: 13,
               backgroundColor: Colors.White,
               alignItems: 'center',
               justifyContent: 'center',
@@ -75,7 +75,7 @@ const SupportChat = () => {
                 style={{
                   height: width * 0.08,
                   width: width * 0.08,
-                  borderRadius: 10,
+                  borderRadius: 13,
                   backgroundColor: Colors.White,
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -87,7 +87,7 @@ const SupportChat = () => {
                 style={{
                   height: width * 0.08,
                   width: width * 0.08,
-                  borderRadius: 10,
+                  borderRadius: 13,
                   backgroundColor: Colors.White,
                   alignItems: 'center',
                   justifyContent: 'center',

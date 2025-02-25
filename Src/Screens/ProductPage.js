@@ -52,7 +52,8 @@ const ProductPage = (props) => {
      
       <ScrollView
       showsVerticalScrollIndicator={false}
-        style={{
+      contentContainerStyle={{paddingBottom:100}}  
+      style={{
           
           top: -width * 0.06,
           width: width,

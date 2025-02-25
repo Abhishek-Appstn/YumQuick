@@ -17,6 +17,9 @@ import SignupIcons from '../../Common/Signup Icons';
 import Dimensions from '../../Global/Dimensions';
 import Layout from '../Layout';
 import {EmailValidation} from '../../Global/Validations/validations';
+import {createUserWithEmailAndPassword, getAuth } from '@react-native-firebase/auth';
+import Snackbar from 'react-native-snackbar';
+import { addDoc, collection } from '@react-native-firebase/firestore'
 const Signup = () => {
   const {height, width} = Dimensions;
   const styles = createStyles({height, width});
@@ -27,7 +30,32 @@ const Signup = () => {
     mobile_number: '',
     dob: '',
   });
-
+const CreateUser=()=>{
+  console.log("here")
+  const auth=getAuth()
+  createUserWithEmailAndPassword(auth,FormData.email,FormData.password).then(response=>{
+    console.log(response)
+    const UserCred=response.user
+    const DbRef= addDoc(collection(db,'Users',{
+      name:FormData.name,
+      mobile_number:FormData.mobile_number,
+      email:FormData.email,
+      dob:FormData.dob,
+      authId:UserCred.uid
+    }))
+    console.log(DbRef)
+    Snackbar.show({text:"User Created Successfully"})
+    navigation.navigate('setPassword')
+  }).catch((err)=>{
+    err.code==='auth/email-already-in-use'?Snackbar.show({
+      text:"Email already in use, Login to continue"
+    }):(
+    console.log(err),
+    Snackbar.show({
+      text:'Something Went Wrong',err
+    }))
+  })
+}
   const navigation = useNavigation();
 
   const Fields = [
@@ -50,7 +78,7 @@ const Signup = () => {
           ? FormData.email.trim() !== '' && EmailValidation(FormData.email)
             ? FormData.mobile_number.trim() !== ''
               ? FormData.dob.trim() !== ''
-                ? navigation.navigate('setPassword')
+                ? CreateUser() 
 // add new user creation code here
 
                 : Alert.alert('DOB cannot be Null')

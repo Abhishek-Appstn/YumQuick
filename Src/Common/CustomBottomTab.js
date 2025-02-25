@@ -17,7 +17,7 @@ const CustomBottomTab = () => {
     {Name: 'Support', Icon: Support,navigate:'Home'},
   ];
   return (
-    <SafeAreaView
+    <View
       style={{
         height: height * 0.09,
         borderRadius: height * 0.04,
@@ -25,6 +25,8 @@ const CustomBottomTab = () => {
         borderBottomRightRadius: 0,
         backgroundColor: Colors.orange_Base,
         alignItems: 'center',
+        overflow:'hidden',
+        position:'absolute',bottom:0
       }}>
       <FlatList
         data={Data}
@@ -50,7 +52,7 @@ const CustomBottomTab = () => {
           );
         }}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

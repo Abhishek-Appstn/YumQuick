@@ -19,7 +19,7 @@ const NsearchBar = (props) => {
              alignItems: 'center',
              padding: 10
            },props.ButtonStyle]}>
-           <TextInput style={{width: props.width?props.width*.8:width*.42, height: props.height?props.height: width*.08}} placeholder="Search" />
+           <TextInput style={{width: props.width?props.width*.8:width*.42, height: props.height?props.height: width*.08,paddingHorizontal:10}} placeholder="Search" />
            <Pressable
              style={{
                width:props.width?props.width*.1: width*.05,
@@ -30,7 +30,7 @@ const NsearchBar = (props) => {
                justifyContent: 'center',
              }}
              onPress={() => {
-              navigation.navigate('Test')
+              navigation.navigate('SupportChat')
              }}>
              <Image
                source={require('../assets/Images/Slider.png')}

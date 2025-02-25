@@ -42,9 +42,16 @@ import Favourites from './Src/Screens/Favourites';
 import OnboardingScreen from './Src/Screens/OnboardingScreen';
 import SupportChat from './Src/Screens/SupportChat';
 import testPage from './Src/Screens/testPage';
+import { firebase } from '@react-native-firebase/auth';
+import { getApps } from '@react-native-firebase/app';
 const {height, width} = Dimensions;
 const App = () => {
+  const app=getApps()
   const stack = createStackNavigator();
+  useEffect(() => {
+ app.length===0?console.log('error'):console.log('ok')
+  }, [])
+  
   return (
     <NavigationContainer>
       <stack.Navigator screenOptions={{headerShown: false}}>
@@ -103,12 +110,15 @@ const DrawerNavigator = () => {
 const FooterNavigator = () => {
   const Footer = createBottomTabNavigator();
   return (
+  
     <Footer.Navigator
-      screenOptions={{headerShown: false, 
-        tabBarStyle: { backgroundColor: 'transparent' },
-      }}
+    screenOptions={{ 
+      headerShown: false, 
+     
+    }}
     
-      tabBar={props => <CustomBottomTab {...props} />}>
+      tabBar={props => <CustomBottomTab {...props} />}
+      >
       <Footer.Screen name="Dashboard" component={Home} />
       <Footer.Screen name="ProductPage" component={ProductPage} />
       <Footer.Screen name="ConfirmOrder" component={ConfirmOrder} />
