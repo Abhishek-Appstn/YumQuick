@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "321071009349",
+    "project_id": "yumquick-bc1ec",
+    "storage_bucket": "yumquick-bc1ec.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321071009349:android:f39f28ef6325572bba1d2c",
+        "android_client_info": {
+          "package_name": "com.yumquick"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8TeuCcnP1DWj5F9Nk6sTvMow8GguGRkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
