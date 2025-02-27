@@ -44,6 +44,8 @@ import SupportChat from './Src/Screens/SupportChat';
 import testPage from './Src/Screens/testPage';
 import { firebase } from '@react-native-firebase/auth';
 import { getApps } from '@react-native-firebase/app';
+import Admin_Home from './Src/Screens/Admin_Home';
+import AddProduct from './Src/Screens/AddProduct';
 const {height, width} = Dimensions;
 const App = () => {
   const app=getApps()
@@ -56,10 +58,15 @@ const App = () => {
     <NavigationContainer>
       <stack.Navigator screenOptions={{headerShown: false}}>
         <stack.Screen name="Splash" component={Splash} />
+
         <stack.Screen name="landingPage" component={LandingScreen} />
         <stack.Screen name="Drawer" component={DrawerNavigator} />
         <stack.Screen name="Login" component={Login} />
         <stack.Screen name="Signup" component={Signup} />
+        <stack.Screen name="Admin_Home" component={Admin_Home} />
+        <stack.Screen name="AddProduct" component={AddProduct} />
+
+
         <stack.Screen name="setPassword" component={SetPassword} />
         <stack.Screen name="setFingerprint" component={SetFingerprint} />
         <stack.Screen name="Confirmation" component={Confirmation} />
