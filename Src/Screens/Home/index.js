@@ -30,6 +30,7 @@ import Svg, {Path} from 'react-native-svg';
 import Colors from '../../Global/Colors';
 import { collection, getDocs, getFirestore, query, where } from '@react-native-firebase/firestore';
 import FetchFirestoreData from '../../Global/FirestoreFetch';
+import Spinner from '../../Common/Spinner';
 
 
 const Home = () => {
@@ -37,6 +38,7 @@ const Home = () => {
   const A = Aroute.params;
   const {height, width} = Dimensions;
   const [Active, setActive] = useState(null);
+  const [Loading, setLoading] = useState(false)
   const RippleBG = useRef(new Animated.Value(0)).current;
   const styles = createStyle({height, width, Active});
 const [Data, setData] = useState([]) 
@@ -58,26 +60,35 @@ useEffect(() => {
  try {
   console.log("ENtering Try block")
       const firestoreData = await FetchFirestoreData({ CollectionName: Name });
-      console.log('Firestore Data:', firestoreData); // Log the result
       setData(firestoreData);
+      setLoading(false)
     } catch (error) {
+      console.error('Error fetching data:', error);
+      setLoading(false)
+
+    }
+  
+  };
+  setLoading(true)
+  fetchData("Products");
+}, []);
+useEffect(() => {
+  setLoading(true)
+  const fetchData = async (Name) => {
+    console.log('Fetching data with filter...');
+    const filters = [where("Type", "==", "Snacks")];
+ try {
+      const firestoreData = await FetchFirestoreData({ CollectionName: Name,QueryFilters:filters });
+      setFData(firestoreData);
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
       console.error('Error fetching data:', error);
     }
   
   };
   fetchData("Products");
-}, []);
-
-
-  //  useEffect(() => {
-  //   const fetchData = async ({Name}) => {
-  //      const Filter=where("Type",'==','Snacks')
-  //   const FetchedData=await FetchFirestoreData({CollectionName:Name,QueryFilters:Filter})
-  //     // const firestoreData = await FetchFirestoreData({ CollectionName: Name });
-  //     setFData(FetchedData);
-  //   };
-  //   fetchData("Products")
-  //  }, [])
+}, [Active]);
   const data = [
     {id: '1', name: 'Snacks', image: require('../../assets/Images/Snacks.png')},
     {id: '2', name: 'Meal', image: require('../../assets/Images/Meals.png')},
@@ -148,6 +159,7 @@ useEffect(() => {
   };
   return (
     <SafeAreaView style={styles.container}>
+     {Loading? <Spinner/>:null}
       <View style={{justifyContent: 'center'}}>
         <View style={{paddingTop: height * 0.02}}>
           <SearchBar />
@@ -283,11 +295,12 @@ useEffect(() => {
                   </View>
                 </View>
                 <FlatList
-                  data={SecData}
+                  data={FData}
+                  ListEmptyComponent={<><Text>Its Empty</Text></>}
                   key={SecData.name}
                   scrollEnabled={false}
                   showsVerticalScrollIndicator={false}
-                  contentContainerStyle={{}}
+                  contentContainerStyle={{paddingBottom:100}}
                   renderItem={({item, index}) => {
                     return (
                       <Pressable
@@ -308,7 +321,7 @@ useEffect(() => {
                             alignSelf: 'center',
                             resizeMode: 'cover',
                           }}
-                          source={item.image}
+                          source={{uri:item.Image}}
                         />
 
                         <View>
@@ -403,7 +416,9 @@ useEffect(() => {
             </View>
           )}
         </ScrollView>
+
       </View>
+
     </SafeAreaView>
   );
 };

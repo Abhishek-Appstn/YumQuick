@@ -3,7 +3,6 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  ImageBackground,
   Image,
   Pressable,
 } from 'react-native';
@@ -11,29 +10,23 @@ import React, {useEffect, useRef, useState} from 'react';
 import Dimensions from '../../Global/Dimensions';
 import Colors from '../../Global/Colors';
 import FetchFirestoreData from '../../Global/FirestoreFetch';
-import { Pork_Skewer } from '../../assets/Images';
-
-const data = [
-  {key: '1', offerHeader: 'Experience our delicious new dish', offerValue:'30',image: require('../../assets/Images/Pizza.png')},
-  {key: '2', offerHeader: 'Enjoy Authentic Arabian Delicacies', offerValue:'20',image: require('../../assets/Images/Tikka.png')},
-  {key: '3', offerHeader: 'Refresh your Taste buds with Tradional Masterpieces', offerValue:'10',image: require('../../assets/Images/Traditional.png')},
-
-];
+import {Pork_Skewer} from '../../assets/Images';
 
 const Carousal = props => {
-  
-  const [Data, setData] = useState([])
+  const [Data, setData] = useState([]);
   const {height, width} = Dimensions;
   const styles = createStyles({height, width});
   const [activeCarousal, setactiveCarousal] = useState(0);
   const ref = useRef(null);
+
   useEffect(() => {
-    const FetchData=async(Name)=>{
-    const FetchedData=await FetchFirestoreData({CollectionName:Name})
-   setData(FetchedData)
-    }
-    FetchData("Carousal")
-   }, [])
+    const FetchData = async Name => {
+      const FetchedData = await FetchFirestoreData({CollectionName: Name});
+      setData(FetchedData);
+    };
+    FetchData('Carousal');
+  }, []);
+
   const renderItem = ({item}) => (
     <View style={styles.container}>
       <View
@@ -56,7 +49,7 @@ const Carousal = props => {
                   top: -50,
                   borderColor: Colors.yellow_Base,
                   borderWidth: 10,
-                  zIndex:2
+                  zIndex: 2,
                 }}
               />
             </View>
@@ -64,8 +57,8 @@ const Carousal = props => {
               style={{
                 flex: 4,
                 padding: 5,
-                paddingTop:0,
-                marginTop:width*.04,
+                paddingTop: 0,
+                marginTop: width * 0.04,
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
@@ -76,7 +69,7 @@ const Carousal = props => {
                   textAlign: 'center',
                   maxWidth: width * 0.38,
                 }}>
-               {item.Title}
+                {item.Title}
               </Text>
               <Text
                 style={{
@@ -101,23 +94,26 @@ const Carousal = props => {
                   left: -26,
                   bottom: -46,
                   borderColor: Colors.yellow_Base,
-                  borderWidth: 10,zIndex:2
+                  borderWidth: 10,
+                  zIndex: 2,
                 }}
               />
             </View>
           </View>
         </View>
-        <View style={{flex: 1, }}>
+        <View style={{flex: 1}}>
           <Image
-            source={item.Image!==''?item.Image:Pork_Skewer} //change static image
+            source={item.Image !== '' ? item.Image : Pork_Skewer} //change static image
             resizeMode="cover"
-            style={{width: width * 0.46, height: width * 0.3}}></Image>
+            style={{width: width * 0.46, height: width * 0.3}}
+          />
         </View>
       </View>
 
-      <View></View>
+      <View />
     </View>
   );
+
   const renderButtons = ({item, index}) => (
     <Pressable style={styles.barContainer} onPress={() => handleScroll(index)}>
       <View
@@ -129,18 +125,22 @@ const Carousal = props => {
       />
     </Pressable>
   );
-  const onViewableItemsChanged = ({viewableItems}) => {
-    if (viewableItems.length > 0) {
-    console.log("#############",viewableItems)
 
+  const onViewableItemsChanged = useRef(({viewableItems}) => {
+    if (viewableItems.length > 0) {
       setactiveCarousal(viewableItems[0].index);
     }
+  }).current;
+
+  const viewabilityConfig = {
+    itemVisiblePercentThreshold: 80,
   };
+
   const handleScroll = index => {
-    console.log("#############",index)
     setactiveCarousal(index);
     ref.current.scrollToIndex({animated: true, index});
   };
+
   return (
     <View>
       <FlatList
@@ -151,20 +151,23 @@ const Carousal = props => {
         pagingEnabled
         keyExtractor={item => item.key}
         showsHorizontalScrollIndicator={false}
-        viewabilityConfig={{itemVisiblePercentThreshold: 80}}
+        viewabilityConfig={viewabilityConfig}
         onViewableItemsChanged={onViewableItemsChanged}
+        extraData={activeCarousal}
       />
       <FlatList
         data={Data}
         renderItem={renderButtons}
+        extraData={activeCarousal} // Added extraData to ensure re-rendering
         horizontal
         keyExtractor={item => item.key}
         showsHorizontalScrollIndicator={false}
-        style={{alignSelf: 'center', marginTop:5}}
+        style={{alignSelf: 'center', marginTop: 5}}
       />
     </View>
   );
 };
+
 const createStyles = ({height, width}) =>
   StyleSheet.create({
     container: {
@@ -205,4 +208,5 @@ const createStyles = ({height, width}) =>
       fontWeight: 'bold',
     },
   });
+
 export default Carousal;

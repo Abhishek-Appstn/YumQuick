@@ -28,6 +28,7 @@ import {
   query,
   where,
 } from '@react-native-firebase/firestore';
+import Spinner from '../../Common/Spinner';
 
 const Login = () => {
   const {height, width} = Dimensions;
@@ -38,6 +39,7 @@ const Login = () => {
     password: '',
   });
   const [loggedIn, setloggedIn] = useState(false); // replace using useselctor
+  const [Loading, setLoading] = useState(false);
   const navigation = useNavigation();
   // const email=useSelector(state=>state)
   // console.log("??????????????????????????",email)
@@ -62,6 +64,7 @@ const Login = () => {
         );
   };
   const LoginCall = () => {
+    setLoading(true);
     const auth = getAuth();
     const db = getFirestore();
     signInWithEmailAndPassword(
@@ -77,17 +80,17 @@ const Login = () => {
             where('__name__', '==', UserID),
           );
           const querySnapshot = await getDocs(q);
-          console.log('=======>', querySnapshot.docs);
-
           !querySnapshot.empty
             ? //write dispatch for redux save
-              (Snackbar.show({
-                text: `Login Successfull Welcome ${
-                  querySnapshot.docs[0].data().name
-                }`,
-                backgroundColor: 'green',
-              }),
-              navigation.navigate('Drawer'))
+              setLoading(false)(
+                Snackbar.show({
+                  text: `Login Successfull Welcome ${
+                    querySnapshot.docs[0].data().name
+                  }`,
+                  backgroundColor: 'green',
+                }),
+                navigation.navigate('Drawer'),
+              )
             : Snackbar.show({
                 text: 'Login Failed',
               });
@@ -100,12 +103,14 @@ const Login = () => {
           backgroundColor: 'red',
           textColor: '#fff',
         });
+        setLoading(false);
         console.log('===========================>', error);
       });
   };
   return (
     <>
       <PageHeader Title={loggedIn ? 'Hello !' : 'Log In'} />
+      {Loading ? <Spinner /> : null}
       <View style={styles.container}>
         <View
           style={{
