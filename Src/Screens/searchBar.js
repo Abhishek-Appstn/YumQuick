@@ -1,12 +1,12 @@
-import { View, Text, TextInput, Pressable, Image } from 'react-native'
-import React from 'react'
-import Dimensions from '../Global/Dimensions'
-import Colors from '../Global/Colors'
-import { useNavigation } from '@react-navigation/native'
+import {View, Text, TextInput, Pressable, Image} from 'react-native';
+import React from 'react';
+import Dimensions from '../Global/Dimensions';
+import Colors from '../Global/Colors';
+import {useNavigation} from '@react-navigation/native';
 
-const NsearchBar = (props) => {
-    const {height,width}=Dimensions
-    const navigation=useNavigation()
+const NsearchBar = props => {
+  const {height, width} = Dimensions;
+  const navigation = useNavigation();
   return (
    <View
            style={[{
@@ -41,4 +41,4 @@ const NsearchBar = (props) => {
   )
 }
 
-export default NsearchBar
+export default NsearchBar;

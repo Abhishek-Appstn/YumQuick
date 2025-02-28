@@ -13,7 +13,7 @@ const CustomTextInput = (props) => {
 
     <View style={styles.container}>
         
-    <TextInput inputMode={props.name=='Mobile Number'?'numeric':null} multiline={props.multiline?true:false} style={styles.textInput} placeholder={props.placeholder} onChangeText={props.onChangeText} secureTextEntry={(props.type==="password"||props.type==="cpassword")&&!visible?true:false}/>
+    <TextInput value={props.value?props.value:null} inputMode={props.name=='Mobile Number'?'numeric':null} multiline={props.multiline?true:false} style={styles.textInput} placeholder={props.placeholder} onChangeText={props.onChangeText} secureTextEntry={(props.type==="password"||props.type==="cpassword")&&!visible?true:false}/>
     {props.type==='password'||props.type==="cpassword"?
     <Pressable onPress={()=>setvisible(!visible)}>{visible?<Image style={styles.icon}source={require('../../assets/Images/Show_On.png')}/>:<Image style={styles.icon}source={require('../../assets/Images/Show_Off.png')}/>}</Pressable>:null} 
    </View>

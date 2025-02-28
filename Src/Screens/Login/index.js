@@ -17,19 +17,30 @@ import SignupIcons from '../../Common/Signup Icons';
 import Dimensions from '../../Global/Dimensions';
 import Colors from '../../Global/Colors';
 import {EmailValidation} from '../../Global/Validations/validations';
-import { getAuth, signInWithEmailAndPassword } from '@react-native-firebase/auth'
+import {getAuth, signInWithEmailAndPassword} from '@react-native-firebase/auth';
 import Snackbar from 'react-native-snackbar';
+import {useDispatch, useSelector} from 'react-redux';
+import {login} from '../../Global/Redux/Actions';
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from '@react-native-firebase/firestore';
 
 const Login = () => {
   const {height, width} = Dimensions;
   const styles = createStyles({height, width});
+  // const dispatch=useDispatch()
   const [FormData, setFormData] = useState({
     email: '',
     password: '',
   });
   const [loggedIn, setloggedIn] = useState(false); // replace using useselctor
   const navigation = useNavigation();
-
+  // const email=useSelector(state=>state)
+  // console.log("??????????????????????????",email)
   const handleTextChange = (text, key) => {
     setFormData({
       ...FormData,
@@ -40,38 +51,58 @@ const Login = () => {
   const handleNavigation = path => {
     FormData.email.trim() && FormData.password.trim() !== ''
       ? EmailValidation(FormData.email.trim())
-      
-        ?LoginCall() 
-        // navigation.navigate(path)
-        : //Add code for firebase auth here
-        
+        ? LoginCall()
+        : // navigation.navigate(path)
+          //Add code for firebase auth here
+
           Alert.alert('Error', 'Enter a valid mail id')
       : Alert.alert(
           'Enter all mandatory Fields',
           'Enter all mandatory fields to login ',
         );
   };
-  const LoginCall=()=>{
-    const auth=getAuth()
-    signInWithEmailAndPassword(auth,FormData.email,FormData.password.toString()).then(response=>{
-      console.log(response,'Signin SUccess')
-    Snackbar.show({
-      text:'Login Successful',
-      backgroundColor:'green'
-    })
-    navigation.navigate('Drawer')
-    })
-    .catch(error=>{
-      // error=='[auth/invalid-credential]'?
-      Snackbar.show({
-        text:'Invalid Credentials',
-        backgroundColor:'red',
-        textColor:'#fff'
+  const LoginCall = () => {
+    const auth = getAuth();
+    const db = getFirestore();
+    signInWithEmailAndPassword(
+      auth,
+      FormData.email,
+      FormData.password.toString(),
+    )
+      .then(response => {
+        const UserID = response.user.uid;
+        const FetchUserDetails = async () => {
+          const q = query(
+            collection(db, 'Users'),
+            where('__name__', '==', UserID),
+          );
+          const querySnapshot = await getDocs(q);
+          console.log('=======>', querySnapshot.docs);
+
+          !querySnapshot.empty
+            ? //write dispatch for redux save
+              (Snackbar.show({
+                text: `Login Successfull Welcome ${
+                  querySnapshot.docs[0].data().name
+                }`,
+                backgroundColor: 'green',
+              }),
+              navigation.navigate('Drawer'))
+            : Snackbar.show({
+                text: 'Login Failed',
+              });
+        };
+        FetchUserDetails();
       })
-      // :
-      console.log("===========================>",error)
-    })
-  }
+      .catch(error => {
+        Snackbar.show({
+          text: 'Invalid Credentials',
+          backgroundColor: 'red',
+          textColor: '#fff',
+        });
+        console.log('===========================>', error);
+      });
+  };
   return (
     <>
       <PageHeader Title={loggedIn ? 'Hello !' : 'Log In'} />

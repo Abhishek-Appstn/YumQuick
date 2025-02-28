@@ -68,21 +68,22 @@ const Admin_Home = () => {
             />
           </View>
 </View>
-<View style={{height:height*.17,marginBottom:10,backgroundColor:'violet',borderRadius:30,padding:15}}>
+<View style={{height:height*.17,marginBottom:10,backgroundColor:Colors.yellow_Base,borderRadius:20,padding:15,elevation:20}}>
     <Text style={{fontSize:45,fontWeight:'900'}}>500</Text>
     <Text>Orders's Today</Text>
 </View>
-<LineChart yAxisTextNumberOfLines={4} height={170}frontColor={"blue"} width={width*.7}barWidth={16}barBorderRadius={6}color={"red"}  data={[{value:50},{value:10},{value:40},{value:50}]}/>
+<Text style={{fontSize:20,fontWeight:'700',marginBottom:20}}> Recent Order Statistics</Text>
+<LineChart xAxisLabelTexts={''} height={170} width={width*.7}barWidth={16}barBorderRadius={6}color={Colors.orange_Base}  data={[{value:50},{value:10},{value:40},{value:50}]}/>
      
-     <View style={{flexDirection:'row',width:width*.9,justifyContent:'space-between',alignItems:'center'}}>
-        <Pressable style={{height:height*.25,width:width*.4,backgroundColor:'#dca2eb',borderRadius:20,alignItems:'center',justifyContent:'space-evenly'}}onPress={()=>navigation.navigate('AddProduct')}>
+     <View style={{flexDirection:'row',width:width*.9,justifyContent:'space-between',alignItems:'center',marginHorizontal:10}}>
+        <Pressable style={{height:height*.2,width:width*.4,backgroundColor:Colors.yellow_Base,borderRadius:20,alignItems:'center',justifyContent:'space-evenly',elevation:20}}onPress={()=>navigation.navigate('AddProduct')}>
          <Image source={Plus} style={{height:50,width:50}}/>
             <Text>Add Product</Text>
         </Pressable>
 
-        <Pressable style={{height:height*.25,width:width*.4,backgroundColor:'#dca2eb',borderRadius:20,alignItems:'center',justifyContent:'space-evenly'}}>
+        <Pressable style={{height:height*.2,width:width*.4,backgroundColor:Colors.yellow_Base,borderRadius:20,alignItems:'center',justifyContent:'space-evenly',elevation:20}}>
          <Image source={Plus} style={{height:50,width:50}}/>
-            <Text>Add Product</Text>
+            <Text>Add New Category </Text>
         </Pressable>
      </View>
       </View>

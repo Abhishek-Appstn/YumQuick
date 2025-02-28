@@ -28,16 +28,56 @@ import {
 import Layout from '../Layout';
 import Svg, {Path} from 'react-native-svg';
 import Colors from '../../Global/Colors';
+import { collection, getDocs, getFirestore, query, where } from '@react-native-firebase/firestore';
+import FetchFirestoreData from '../../Global/FirestoreFetch';
 
 
 const Home = () => {
   const Aroute = useRoute();
   const A = Aroute.params;
-
   const {height, width} = Dimensions;
   const [Active, setActive] = useState(null);
   const RippleBG = useRef(new Animated.Value(0)).current;
   const styles = createStyle({height, width, Active});
+const [Data, setData] = useState([]) 
+const [FData, setFData] = useState([]) 
+  // useEffect(() => {
+  //   const fetchData = async (Name) => {
+  //     const firestoreData = await FetchFirestoreData({ CollectionName: Name ,QueryFilters:[where("Type",'==','Snacks')]});
+  //     setData(firestoreData);
+  //   };
+  //   fetchData("Products")
+  //  }, [])
+
+useEffect(() => {
+  const fetchData = async (Name) => {
+    console.log('Fetching data with filter...');
+    const filters = [where("Type", "==", "Vegan")];
+    console.log('Filters:', filters);
+
+ try {
+  console.log("ENtering Try block")
+      const firestoreData = await FetchFirestoreData({ CollectionName: Name });
+      console.log('Firestore Data:', firestoreData); // Log the result
+      setData(firestoreData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  
+  };
+  fetchData("Products");
+}, []);
+
+
+  //  useEffect(() => {
+  //   const fetchData = async ({Name}) => {
+  //      const Filter=where("Type",'==','Snacks')
+  //   const FetchedData=await FetchFirestoreData({CollectionName:Name,QueryFilters:Filter})
+  //     // const firestoreData = await FetchFirestoreData({ CollectionName: Name });
+  //     setFData(FetchedData);
+  //   };
+  //   fetchData("Products")
+  //  }, [])
   const data = [
     {id: '1', name: 'Snacks', image: require('../../assets/Images/Snacks.png')},
     {id: '2', name: 'Meal', image: require('../../assets/Images/Meals.png')},
@@ -197,8 +237,8 @@ const Home = () => {
             <ScrollView
               showsVerticalScrollIndicator={false}
               style={{paddingHorizontal: 20}}
-              contentContainerStyle={{marginTop: 10}}>
-              <DisplayCard title="Best Seller" more />
+              contentContainerStyle={{marginTop: 10,paddingBottom:80}}>
+              <DisplayCard title="Best Seller" more Data={Data} />
               <Carousal />
               <DisplayCard title="Recomended" type="large" />
             </ScrollView>
@@ -245,6 +285,7 @@ const Home = () => {
                 <FlatList
                   data={SecData}
                   key={SecData.name}
+                  scrollEnabled={false}
                   showsVerticalScrollIndicator={false}
                   contentContainerStyle={{}}
                   renderItem={({item, index}) => {

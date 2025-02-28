@@ -15,7 +15,7 @@ const {height, width} = Dimensions;
 const CustomButton = props => {
   const styles = createStyles(props);
   return (
-    <Pressable style={styles.ButtonStyle} onPress={props.onPress}>
+    <Pressable disabled={props.disabled?props.disabled:false} style={styles.ButtonStyle} onPress={props.onPress}>
       {props?.icon ? <Image source={props.icon} /> : null}
       <Text
         style={[

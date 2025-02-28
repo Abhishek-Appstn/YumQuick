@@ -1,8 +1,8 @@
-import { LOGIN } from "./Constants";
+// import { LOGIN } from "./Constants";
 
-export const login=data=>({
-    type:LOGIN,
-    payload:{
-        email:data.email
-    }
-})
+// export const login=data=>({
+//     type:LOGIN,
+//     payload:{
+//         email:data.email
+//     }
+// })

@@ -21,21 +21,24 @@ const {height, width} = Dimensions;
 const ImageView = props => {
   const styles = createStyles({height, width, props});
   const navigation = useNavigation();
+  console.log("INcoming data is",props.data)
   return (
     <FlatList
-      showsHorizontalScrollIndicator={false}
+    ListEmptyComponent={<><Text>Empty </Text></>}
+      showsHorizontalScrollIndicator={false}scrollEnabled={props.type=="large"?false:true}
       showsVerticalScrollIndicator={false}
       horizontal={props.type == 'large' ? false : true}
       numColumns={props.type === 'large' ? 2 : null}
       data={props.data}
       renderItem={({item, index}) => {
+        console.log("Data is item",item)
         return (
           <Pressable
             style={styles.imageWrapper}
             onPress={() => {
               navigation.navigate('ProductPage', {item});
             }}>
-            <ImageBackground source={item.image} style={styles.image}>
+            <ImageBackground source={{uri:item.Image}} style={styles.image}>
               {props.BestSeller ? (
                 <View
                   style={{

@@ -1,26 +1,26 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import {configureStore} from '@reduxjs/toolkit'
-import { YumReducer } from './Reducer';
-import {persistReducer} from 'redux-persist'
-import persistStore from 'redux-persist/es/persistStore';
+// import AsyncStorage from '@react-native-async-storage/async-storage'
+// import {configureStore} from '@reduxjs/toolkit'
+// import { YumReducer } from './Reducer';
+// import {persistReducer, persistStore} from 'redux-persist'
 
 
-const persistConfig={
-    key:'YumQuick',
-    storage:AsyncStorage
-};
-const PersistedReducer = persistReducer(persistConfig,YumReducer)
 
-const Store=configureStore({
-reducer:PersistedReducer,
-middleware:getdefaultMiddleware=>{
-    getdefaultMiddleware({
-        immutableCheck:false,
-        serializableCheck:false
-    })
-}
-})
+// const persistConfig={
+//     key:'YumQuick',
+//     storage:AsyncStorage
+// };
+// const PersistedReducer = persistReducer(persistConfig,YumReducer)
 
-let persister=persistStore(Store)
+// const Store=configureStore({
+// reducer:PersistedReducer,
+// middleware:getdefaultMiddleware=>{
+//     getdefaultMiddleware({
+//         immutableCheck:false,
+//         serializableCheck:false
+//     })
+// }
+// })
 
-export{Store,persister}
+// let persister=persistStore(Store)
+
+// export{Store,persister}

@@ -46,6 +46,8 @@ import { firebase } from '@react-native-firebase/auth';
 import { getApps } from '@react-native-firebase/app';
 import Admin_Home from './Src/Screens/Admin_Home';
 import AddProduct from './Src/Screens/AddProduct';
+import { Provider } from 'react-redux';
+import { Store } from './Src/Global/Redux/Store';
 const {height, width} = Dimensions;
 const App = () => {
   const app=getApps()
@@ -55,7 +57,9 @@ const App = () => {
   }, [])
   
   return (
+    
     <NavigationContainer>
+
       <stack.Navigator screenOptions={{headerShown: false}}>
         <stack.Screen name="Splash" component={Splash} />
 
@@ -86,6 +90,8 @@ const App = () => {
         <stack.Screen name="OnboardingScreem" component={OnboardingScreen} />
       </stack.Navigator>
     </NavigationContainer>
+    
+
   );
 };
 const DrawerNavigator = () => {

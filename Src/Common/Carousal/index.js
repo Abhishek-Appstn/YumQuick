@@ -10,6 +10,8 @@ import {
 import React, {useEffect, useRef, useState} from 'react';
 import Dimensions from '../../Global/Dimensions';
 import Colors from '../../Global/Colors';
+import FetchFirestoreData from '../../Global/FirestoreFetch';
+import { Pork_Skewer } from '../../assets/Images';
 
 const data = [
   {key: '1', offerHeader: 'Experience our delicious new dish', offerValue:'30',image: require('../../assets/Images/Pizza.png')},
@@ -20,11 +22,18 @@ const data = [
 
 const Carousal = props => {
   
-  
+  const [Data, setData] = useState([])
   const {height, width} = Dimensions;
   const styles = createStyles({height, width});
   const [activeCarousal, setactiveCarousal] = useState(0);
   const ref = useRef(null);
+  useEffect(() => {
+    const FetchData=async(Name)=>{
+    const FetchedData=await FetchFirestoreData({CollectionName:Name})
+   setData(FetchedData)
+    }
+    FetchData("Carousal")
+   }, [])
   const renderItem = ({item}) => (
     <View style={styles.container}>
       <View
@@ -67,7 +76,7 @@ const Carousal = props => {
                   textAlign: 'center',
                   maxWidth: width * 0.38,
                 }}>
-               {item.offerHeader}
+               {item.Title}
               </Text>
               <Text
                 style={{
@@ -78,7 +87,7 @@ const Carousal = props => {
                   fontSize: 30,
                   letterSpacing: 1.2,
                 }}>
-                {item.offerValue}% OFF
+                {item.OfferPercentage}% OFF
               </Text>
             </View>
             <View style={{flex: 1}}>
@@ -100,7 +109,7 @@ const Carousal = props => {
         </View>
         <View style={{flex: 1, }}>
           <Image
-            source={item.image}
+            source={item.Image!==''?item.Image:Pork_Skewer} //change static image
             resizeMode="cover"
             style={{width: width * 0.46, height: width * 0.3}}></Image>
         </View>
@@ -122,10 +131,13 @@ const Carousal = props => {
   );
   const onViewableItemsChanged = ({viewableItems}) => {
     if (viewableItems.length > 0) {
+    console.log("#############",viewableItems)
+
       setactiveCarousal(viewableItems[0].index);
     }
   };
   const handleScroll = index => {
+    console.log("#############",index)
     setactiveCarousal(index);
     ref.current.scrollToIndex({animated: true, index});
   };
@@ -133,7 +145,7 @@ const Carousal = props => {
     <View>
       <FlatList
         ref={ref}
-        data={data}
+        data={Data}
         renderItem={renderItem}
         horizontal
         pagingEnabled
@@ -143,7 +155,7 @@ const Carousal = props => {
         onViewableItemsChanged={onViewableItemsChanged}
       />
       <FlatList
-        data={data}
+        data={Data}
         renderItem={renderButtons}
         horizontal
         keyExtractor={item => item.key}

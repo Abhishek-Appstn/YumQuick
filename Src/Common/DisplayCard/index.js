@@ -15,6 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const DisplayCard = props => {
   const {height, width} = Dimensions;
+  console.log('Data',props.Data)
   const data = [
     {
       name: 'Sushi',
@@ -94,7 +95,7 @@ const DisplayCard = props => {
       {props.type === 'large' ? (
         <ImageView data={bigData} type="large" />
       ) : (
-        <ImageView data={data} />
+        <ImageView data={props.Data} />
       )}
     </View>
   );
